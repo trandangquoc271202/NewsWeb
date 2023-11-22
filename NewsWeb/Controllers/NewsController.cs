@@ -1,4 +1,5 @@
-﻿using System;
+﻿using NewsWeb.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -11,7 +12,12 @@ namespace NewsWeb.Controllers
         // GET: News
         public ActionResult News()
         {
-            return View();
+            List<RssItem> list = new List<RssItem>();
+            ConvertRssToList convertRssToList = new ConvertRssToList();
+
+            list = convertRssToList.GetRssItems("https://vnexpress.net/rss/suc-khoe.rss");
+        
+            return View(list);
         }
     }
 }

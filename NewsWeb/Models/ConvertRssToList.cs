@@ -9,7 +9,7 @@ namespace NewsWeb.Models
 {
     public class ConvertRssToList
     {
-        static List<RssItem> GetRssItems(string rssFeedUrl)
+        public List<RssItem> GetRssItems(string rssFeedUrl)
         {
             List<RssItem> rssItems = new List<RssItem>();
 
