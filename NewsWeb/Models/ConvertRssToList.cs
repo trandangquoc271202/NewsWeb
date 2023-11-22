@@ -1,4 +1,5 @@
-﻿using System;
+﻿using HtmlAgilityPack;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.ServiceModel.Syndication;
@@ -26,9 +27,10 @@ namespace NewsWeb.Models
                         RssItem rssItem = new RssItem
                         {
                             Title = item.Title?.Text,
-                            Description = item.Summary?.Text,
+                            Description = convertDescription(item.Summary?.Text),
                             Link = item.Links.FirstOrDefault()?.Uri?.ToString(),
-                            PublishDate = item.PublishDate.DateTime
+                            PublishDate = item.PublishDate.DateTime,
+                            Image = convertImage(item.Summary?.Text)
                         };
 
                         rssItems.Add(rssItem);
@@ -37,6 +39,20 @@ namespace NewsWeb.Models
             }
 
             return rssItems;
+        }
+        public static string convertImage(string description)
+        {
+            HtmlDocument htmlDocument = new HtmlDocument();
+            htmlDocument.LoadHtml(description);
+            HtmlNode imgNode = htmlDocument.DocumentNode.SelectSingleNode("//img");
+            string srcValue = imgNode.GetAttributeValue("src", "");
+            return srcValue;
+        }
+        public static string convertDescription(string description)
+        {
+            int index = description.IndexOf("</br>") + 5;
+            string result = description.Substring(index);
+            return result;
         }
     }
 }

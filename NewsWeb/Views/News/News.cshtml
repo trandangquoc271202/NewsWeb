@@ -115,12 +115,12 @@
                         {
                             <div class="d-md-flex post-entry-2 small-img">
                             <a href="@item.Link" class="me-4 thumbnail">
-                                <img src="assets/img/post-landscape-6.jpg" alt="" class="img-fluid">
+                                <img src="@item.Image" alt="" class="img-fluid">
                             </a>
                             <div>
-                                <div class="post-meta"><span class="date">Business</span> <span class="mx-1">&bullet;</span> <span>Jul 5th '22</span></div>
+                                <div class="post-meta">@item.PublishDate</div>
                                 <h3><a href="@item.Link">@item.Title</a></h3>
-                                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Distinctio placeat exercitationem magni voluptates dolore. Tenetur fugiat voluptates quas.</p>
+                                <p>@item.Description</p>
                                 <div class="d-flex align-items-center author">
                                     <div class="photo"><img src="assets/img/person-2.jpg" alt="" class="img-fluid"></div>
                                     <div class="name">
