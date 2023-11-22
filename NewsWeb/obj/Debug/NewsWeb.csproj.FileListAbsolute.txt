@@ -76,3 +76,6 @@ D:\.NET\project\NewsWeb\NewsWeb\obj\Debug\NewsWeb.csproj.CoreCompileInputs.cache
 D:\.NET\project\NewsWeb\NewsWeb\obj\Debug\NewsWeb.csproj.CopyComplete
 D:\.NET\project\NewsWeb\NewsWeb\obj\Debug\NewsWeb.dll
 D:\.NET\project\NewsWeb\NewsWeb\obj\Debug\NewsWeb.pdb
+D:\.NET\project\NewsWeb\NewsWeb\bin\HtmlAgilityPack.dll
+D:\.NET\project\NewsWeb\NewsWeb\bin\HtmlAgilityPack.pdb
+D:\.NET\project\NewsWeb\NewsWeb\bin\HtmlAgilityPack.xml
