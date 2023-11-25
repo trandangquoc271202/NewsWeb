@@ -1,0 +1,595 @@
+﻿
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+
+    <title>Home</title>
+    <meta content="" name="description">
+    <meta content="" name="keywords">
+
+    <!-- Favicons -->
+    <link href="/Content/assets/img/favicon.png" rel="icon">
+    <link href="/Content/assets/img/apple-touch-icon.png" rel="apple-touch-icon">
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:wght@400;500&family=Inter:wght@400;500&family=Playfair+Display:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
+
+    <!-- Vendor CSS Files -->
+    <link href="/Content/assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/Content/assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+    <link href="/Content/assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
+    <link href="/Content/assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
+    <link href="/Content/assets/vendor/aos/aos.css" rel="stylesheet">
+
+    <!-- Template Main CSS Files -->
+    <link href="/Content/assets/css/variables.css" rel="stylesheet">
+    <link href="/Content/assets/css/main.css" rel="stylesheet">
+
+    <!-- =======================================================
+    * Template Name: ZenBlog
+    * Updated: Mar 10 2023 with Bootstrap v5.2.3
+    * Template URL: https://bootstrapmade.com/zenblog-bootstrap-blog-template/
+    * Author: BootstrapMade.com
+    * License: https:///bootstrapmade.com/license/
+    ======================================================== -->
+</head>
+
+<body>
+
+    <!-- ======= Header ======= -->
+    @Html.Partial("Header")<!-- End Header -->
+
+    <main id="main">
+        <!-- ======= Hero Slider Section ======= -->
+        <section id="hero-slider" class="hero-slider">
+            <div class="container-md" data-aos="fade-in">
+                <div class="row">
+                    <div class="col-12">
+                        <div class="swiper sliderFeaturedPosts">
+                            <div class="swiper-wrapper">
+                                @for (int i = 0; i < 4; i++)
+                                {
+                                    <div class="swiper-slide">
+                                        <a href="single-post.html" class="img-bg d-flex align-items-end" style="background-image: url('@Model[i].Image');">
+                                            <div class="img-bg-inner">
+                                                <h2>@Model[i].Title</h2>
+                                                <p>@Model[i].Description</p>
+                                            </div>
+                                        </a>
+                                    </div>
+
+                                }
+                            </div>
+                            <div class="custom-swiper-button-next">
+                                <span class="bi-chevron-right"></span>
+                            </div>
+                            <div class="custom-swiper-button-prev">
+                                <span class="bi-chevron-left"></span>
+                            </div>
+
+                            <div class="swiper-pagination"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section><!-- End Hero Slider Section -->
+        <!-- ======= Post Grid Section ======= -->
+        <section id="posts" class="posts">
+            <div class="container" data-aos="fade-up">
+                <div class="row g-5">
+                    <div class="col-lg-4">
+                        @for (int i = 4; i < 6; i++)
+                        {
+                            <div class="post-entry-1 lg">
+
+                                <a href="single-post.html"><img src="@Model[i].Image" alt="" class="img-fluid"></a>
+                                <div class="post-meta">@Model[i].PublishDate</div>
+                                <h2><a href="single-post.html">@Model[i].Title</a></h2>
+                                <p class="mb-4 d-block">@Model[i].Description</p>
+
+                                <div class="d-flex align-items-center author">
+                                    <div class="photo"><img src="assets/img/person-1.jpg" alt="" class="img-fluid"></div>
+                                    <div class="name">
+                                        <h3 class="m-0 p-0"></h3>
+                                    </div>
+                                </div>
+                            </div>
+                        }
+                    </div>
+
+                    <div class="col-lg-8">
+                        <div class="row g-5">
+                            <div class="col-lg-4 border-start custom-border">
+                                @for (int i = 6; i < 9; i++)
+                                {
+                                    <div class="post-entry-1">
+                                        <a href="single-post.html"><img src="@Model[i].Image" alt="" class="img-fluid"></a>
+                                        <div class="post-meta">@Model[i].PublishDate</div>
+                                        <h2><a href="single-post.html">@Model[i].Title</a></h2>
+                                    </div>
+                                }
+                            </div>
+                            <div class="col-lg-4 border-start custom-border">
+                                @for (int i = 9; i < 12; i++)
+                                {
+                                    <div class="post-entry-1">
+                                        <a href="single-post.html"><img src="@Model[i].Image" alt="" class="img-fluid"></a>
+                                        <div class="post-meta">@Model[i].PublishDate</div>
+                                        <h2><a href="single-post.html">@Model[i].Title</a></h2>
+                                    </div>
+                                }
+                            </div>
+
+                            <!-- Trending Section -->
+                            <div class="col-lg-4 border-start custom-border">
+
+                                @for (int i = 12; i < 15; i++)
+                                {
+                                    <div class="post-entry-1">
+                                        <a href="single-post.html"><img src="@Model[i].Image" alt="" class="img-fluid"></a>
+                                        <div class="post-meta">@Model[i].PublishDate</div>
+                                        <h2><a href="single-post.html">@Model[i].Title</a></h2>
+                                    </div>
+                                }
+
+                            </div> <!-- End Trending Section -->
+                        </div>
+                    </div>
+
+                </div> <!-- End .row -->
+            </div>
+        </section> <!-- End Post Grid Section -->
+        <!-- ======= Culture Category Section ======= -->
+        <section class="category-section">
+            <div class="container" data-aos="fade-up">
+
+                <div class="section-header d-flex justify-content-between align-items-center mb-5">
+
+                </div>
+
+                <div class="row">
+                    <div class="col-md-9">
+
+                        <div class="d-lg-flex post-entry-2">
+                            <a href="single-post.html" class="me-4 thumbnail mb-4 mb-lg-0 d-inline-block">
+                                <img src="@Model[15].Image" alt="" class="img-fluid">
+                            </a>
+                            <div>
+                                <div class="post-meta">@Model[15].PublishDate</div>
+                                <h3><a href="single-post.html">@Model[15].Title</a></h3>
+                                <p>@Model[15].Description</p>
+                                <div class="d-flex align-items-center author">
+                                    <div class="photo"><img src="assets/img/person-2.jpg" alt="" class="img-fluid"></div>
+                                    <div class="name">
+                                        <h3 class="m-0 p-0"></h3>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-lg-4">
+                                <div class="post-entry-1 border-bottom">
+                                    <a href="single-post.html"><img src="@Model[16].Image" alt="" class="img-fluid"></a>
+                                    <div class="post-meta">@Model[16].PublishDate</div>
+                                    <h2 class="mb-2"><a href="single-post.html">@Model[16].Title</a></h2>
+                                    <span class="author mb-3 d-block"></span>
+                                    <p class="mb-4 d-block">@Model[16].Description</p>
+                                </div>
+
+                                <div class="post-entry-1">
+                                    <div class="post-meta">@Model[18].PublishDate</div>
+                                    <h2 class="mb-2"><a href="single-post.html">@Model[18].Title</a></h2>
+                                    <span class="author mb-3 d-block"></span>
+                                </div>
+                            </div>
+                            <div class="col-lg-8">
+                                <div class="post-entry-1">
+                                    <a href="single-post.html"><img src="@Model[18].Image" alt="" class="img-fluid"></a>
+                                    <div class="post-meta">@Model[18].PublishDate</div>
+                                    <h2 class="mb-2"><a href="single-post.html">@Model[18].Title</a></h2>
+                                    <span class="author mb-3 d-block"></span>
+                                    <p class="mb-4 d-block">@Model[18].Description</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-3">
+                        @for (int i = 19; i < 22; i++)
+                        {
+                            <div class="post-entry-1">
+                                <a href="single-post.html"><img src="@Model[i].Image" alt="" class="img-fluid"></a>
+                                <div class="post-meta">@Model[i].PublishDate</div>
+                                <h2><a href="single-post.html">@Model[i].Title</a></h2>
+                            </div>
+                        }
+                    </div>
+                </div>
+            </div>
+        </section><!-- End Culture Category Section -->
+        <!-- ======= Business Category Section ======= -->
+        <section class="category-section">
+            <div class="container" data-aos="fade-up">
+
+                <div class="section-header d-flex justify-content-between align-items-center mb-5">
+
+                </div>
+
+                <div class="row">
+                    <div class="col-md-9 order-md-2">
+
+                        <div class="d-lg-flex post-entry-2">
+                            <a href="single-post.html" class="me-4 thumbnail d-inline-block mb-4 mb-lg-0">
+                                <img src="@Model[22].Image" alt="" class="img-fluid">
+                            </a>
+                            <div>
+                                <div class="post-meta">@Model[22].PublishDate</div>
+                                <h3><a href="single-post.html">@Model[22].Title</a></h3>
+                                <p>@Model[22].Description</p>
+                                <div class="d-flex align-items-center author">
+                                    <div class="photo"><img src="assets/img/person-4.jpg" alt="" class="img-fluid"></div>
+                                    <div class="name">
+                                        <h3 class="m-0 p-0"></h3>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-lg-4">
+                                <div class="post-entry-1 border-bottom">
+                                    <a href="single-post.html"><img src="@Model[23].Image" alt="" class="img-fluid"></a>
+                                    <div class="post-meta">@Model[23].PublishDate</div>
+                                    <h2 class="mb-2"><a href="single-post.html">@Model[23].Title</a></h2>
+                                    <span class="author mb-3 d-block"></span>
+                                    <p class="mb-4 d-block">@Model[23].Description</p>
+                                </div>
+
+                                <div class="post-entry-1">
+                                    <div class="post-meta">@Model[24].PublishDate</div>
+                                    <h2 class="mb-2"><a href="single-post.html">@Model[24].Title</a></h2>
+                                    <span class="author mb-3 d-block"></span>
+                                </div>
+                            </div>
+                            <div class="col-lg-8">
+                                <div class="post-entry-1">
+                                    <a href="single-post.html"><img src="@Model[25].Image" alt="" class="img-fluid"></a>
+                                    <div class="post-meta">@Model[25].PublishDate</div>
+                                    <h2 class="mb-2"><a href="single-post.html">@Model[25].Title</a></h2>
+                                    <span class="author mb-3 d-block"></span>
+                                    <p class="mb-4 d-block">@Model[25].Description</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        @for (int i = 26; i < 29; i++)
+                        {
+                            <div class="post-entry-1">
+                                <a href="single-post.html"><img src="@Model[i].Image" alt="" class="img-fluid"></a>
+                                <div class="post-meta">@Model[i].PublishDate</div>
+                                <h2><a href="single-post.html">@Model[i].Title</a></h2>
+                            </div>
+                        }
+                    </div>
+                </div>
+            </div>
+        </section><!-- End Business Category Section -->
+        <!-- ======= Lifestyle Category Section ======= -->
+        <section class="category-section">
+            <div class="container" data-aos="fade-up">
+
+                <div class="section-header d-flex justify-content-between align-items-center mb-5">
+
+                </div>
+
+                <div class="row g-5">
+                    <div class="col-lg-4">
+                        <div class="post-entry-1 lg">
+                            <a href="single-post.html"><img src="@Model[29].Image" alt="" class="img-fluid"></a>
+                            <div class="post-meta">@Model[29].PublishDate</div>
+                            <h2><a href="single-post.html">@Model[29].Title</a></h2>
+                            <p class="mb-4 d-block">@Model[29].Description</p>
+
+                            <div class="d-flex align-items-center author">
+                                <div class="photo"><img src="assets/img/person-7.jpg" alt="" class="img-fluid"></div>
+                                <div class="name">
+                                    <h3 class="m-0 p-0"></h3>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="post-entry-1">
+                            <a href="single-post.html"><img src="@Model[30].Image" alt="" class="img-fluid"></a>
+                            <div class="post-meta">@Model[30].PublishDate</div>
+                            <h2><a href="single-post.html">@Model[30].Title</a></h2>
+                        </div>
+
+                    </div>
+
+                    <div class="col-lg-8">
+                        <div class="row g-5">
+                            <div class="col-lg-4 border-start custom-border">
+                                @for (int i = 31; i < 34; i++)
+                                {
+                                    <div class="post-entry-1">
+                                        <a href="single-post.html"><img src="@Model[i].Image" alt="" class="img-fluid"></a>
+                                        <div class="post-meta">@Model[i].PublishDate</div>
+                                        <h2><a href="single-post.html">@Model[i].Title</a></h2>
+                                    </div>
+                                }
+                            </div>
+                            <div class="col-lg-4 border-start custom-border">
+                                @for (int i = 34; i < 37; i++)
+                                {
+                                    <div class="post-entry-1">
+                                        <a href="single-post.html"><img src="@Model[i].Image" alt="" class="img-fluid"></a>
+                                        <div class="post-meta">@Model[i].PublishDate</div>
+                                        <h2><a href="single-post.html">@Model[i].Title</a></h2>
+                                    </div>
+                                }
+                            </div>
+                            <div class="col-lg-4 border-start custom-border">
+
+                                @for (int i = 37; i < 40; i++)
+                                {
+                                    <div class="post-entry-1">
+                                        <a href="single-post.html"><img src="@Model[i].Image" alt="" class="img-fluid"></a>
+                                        <div class="post-meta">@Model[i].PublishDate</div>
+                                        <h2><a href="single-post.html">@Model[i].Title</a></h2>
+                                    </div>
+                                }
+
+                            </div>
+                        </div>
+                    </div>
+
+                </div> <!-- End .row -->
+            </div>
+        </section><!-- End Lifestyle Category Section -->
+        <!-- ======= Culture Category Section ======= -->
+        <section class="category-section">
+            <div class="container" data-aos="fade-up">
+
+                <div class="section-header d-flex justify-content-between align-items-center mb-5">
+
+                </div>
+
+                <div class="row">
+                    <div class="col-md-9">
+
+                        <div class="d-lg-flex post-entry-2">
+                            <a href="single-post.html" class="me-4 thumbnail mb-4 mb-lg-0 d-inline-block">
+                                <img src="@Model[40].Image" alt="" class="img-fluid">
+                            </a>
+                            <div>
+                                <div class="post-meta">@Model[40].PublishDate</div>
+                                <h3><a href="single-post.html">@Model[40].Title</a></h3>
+                                <p>@Model[40].Description</p>
+                                <div class="d-flex align-items-center author">
+                                    <div class="photo"><img src="assets/img/person-2.jpg" alt="" class="img-fluid"></div>
+                                    <div class="name">
+                                        <h3 class="m-0 p-0"></h3>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-lg-4">
+                                <div class="post-entry-1 border-bottom">
+                                    <a href="single-post.html"><img src="@Model[41].Image" alt="" class="img-fluid"></a>
+                                    <div class="post-meta">@Model[41].PublishDate</div>
+                                    <h2 class="mb-2"><a href="single-post.html">@Model[41].Title</a></h2>
+                                    <span class="author mb-3 d-block"></span>
+                                    <p class="mb-4 d-block">@Model[41].Description</p>
+                                </div>
+
+                                <div class="post-entry-1">
+                                    <div class="post-meta">@Model[42].PublishDate</div>
+                                    <h2 class="mb-2"><a href="single-post.html">@Model[42].Title</a></h2>
+                                    <span class="author mb-3 d-block"></span>
+                                </div>
+                            </div>
+                            <div class="col-lg-8">
+                                <div class="post-entry-1">
+                                    <a href="single-post.html"><img src="@Model[43].Image" alt="" class="img-fluid"></a>
+                                    <div class="post-meta">@Model[43].PublishDate</div>
+                                    <h2 class="mb-2"><a href="single-post.html">@Model[43].Title</a></h2>
+                                    <span class="author mb-3 d-block"></span>
+                                    <p class="mb-4 d-block">@Model[43].Description</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-3">
+                        @for (int i = 44; i < 47; i++)
+                        {
+                            <div class="post-entry-1">
+                                <a href="single-post.html"><img src="@Model[i].Image" alt="" class="img-fluid"></a>
+                                <div class="post-meta">@Model[i].PublishDate</div>
+                                <h2><a href="single-post.html">@Model[i].Title</a></h2>
+                            </div>
+                        }
+                    </div>
+                </div>
+            </div>
+        </section><!-- End Culture Category Section -->
+        <section class="category-section">
+            <div class="container" data-aos="fade-up">
+
+                <div class="section-header d-flex justify-content-between align-items-center mb-5">
+
+                </div>
+                @for (int i = 47; i < 52; i++)
+                {
+                    <div class="d-md-flex post-entry-2 small-img">
+                        <a href="single-post.html" class="me-4 thumbnail">
+                            <img src="@Model[i].Image" alt="" class="img-fluid">
+                        </a>
+                        <div>
+                            <div class="post-meta">@Model[i].PublishDate</div>
+                            <h3><a href="single-post.html">@Model[i].Title</a></h3>
+                            <p>@Model[i].Description</p>
+                            <div class="d-flex align-items-center author">
+                                <div class="photo"><img src="assets/img/person-2.jpg" alt="" class="img-fluid"></div>
+                                <div class="name">
+                                    <h3 class="m-0 p-0"></h3>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                }
+            </div>
+        </section>
+
+
+    </main><!-- End #main -->
+    <!-- ======= Footer ======= -->
+    <footer id="footer" class="footer">
+
+        <div class="footer-content">
+            <div class="container">
+
+                <div class="row g-5">
+                    <div class="col-lg-4">
+                        <h3 class="footer-heading">About ZenBlog</h3>
+                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Magnam ab, perspiciatis beatae autem deleniti voluptate nulla a dolores, exercitationem eveniet libero laudantium recusandae officiis qui aliquid blanditiis omnis quae. Explicabo?</p>
+                        <p><a href="about.html" class="footer-link-more">Learn More</a></p>
+                    </div>
+                    <div class="col-6 col-lg-2">
+                        <h3 class="footer-heading">Navigation</h3>
+                        <ul class="footer-links list-unstyled">
+                            <li><a href="index.html"><i class="bi bi-chevron-right"></i> Home</a></li>
+                            <li><a href="index.html"><i class="bi bi-chevron-right"></i> Blog</a></li>
+                            <li><a href="category.html"><i class="bi bi-chevron-right"></i> Categories</a></li>
+                            <li><a href="single-post.html"><i class="bi bi-chevron-right"></i> Single Post</a></li>
+                            <li><a href="about.html"><i class="bi bi-chevron-right"></i> About us</a></li>
+                            <li><a href="contact.html"><i class="bi bi-chevron-right"></i> Contact</a></li>
+                        </ul>
+                    </div>
+                    <div class="col-6 col-lg-2">
+                        <h3 class="footer-heading">Categories</h3>
+                        <ul class="footer-links list-unstyled">
+                            <li><a href="category.html"><i class="bi bi-chevron-right"></i> Business</a></li>
+                            <li><a href="category.html"><i class="bi bi-chevron-right"></i> Culture</a></li>
+                            <li><a href="category.html"><i class="bi bi-chevron-right"></i> Sport</a></li>
+                            <li><a href="category.html"><i class="bi bi-chevron-right"></i> Food</a></li>
+                            <li><a href="category.html"><i class="bi bi-chevron-right"></i> Politics</a></li>
+                            <li><a href="category.html"><i class="bi bi-chevron-right"></i> Celebrity</a></li>
+                            <li><a href="category.html"><i class="bi bi-chevron-right"></i> Startups</a></li>
+                            <li><a href="category.html"><i class="bi bi-chevron-right"></i> Travel</a></li>
+
+                        </ul>
+                    </div>
+
+                    <div class="col-lg-4">
+                        <h3 class="footer-heading">Recent Posts</h3>
+
+                        <ul class="footer-links footer-blog-entry list-unstyled">
+                            <li>
+                                <a href="single-post.html" class="d-flex align-items-center">
+                                    <img src="assets/img/post-sq-1.jpg" alt="" class="img-fluid me-3">
+                                    <div>
+                                        <div class="post-meta d-block"><span class="date">Culture</span> <span class="mx-1">&bullet;</span> <span>Jul 5th '22</span></div>
+                                        <span>5 Great Startup Tips for Female Founders</span>
+                                    </div>
+                                </a>
+                            </li>
+
+                            <li>
+                                <a href="single-post.html" class="d-flex align-items-center">
+                                    <img src="assets/img/post-sq-2.jpg" alt="" class="img-fluid me-3">
+                                    <div>
+                                        <div class="post-meta d-block"><span class="date">Culture</span> <span class="mx-1">&bullet;</span> <span>Jul 5th '22</span></div>
+                                        <span>What is the son of Football Coach John Gruden, Deuce Gruden doing Now?</span>
+                                    </div>
+                                </a>
+                            </li>
+
+                            <li>
+                                <a href="single-post.html" class="d-flex align-items-center">
+                                    <img src="assets/img/post-sq-3.jpg" alt="" class="img-fluid me-3">
+                                    <div>
+                                        <div class="post-meta d-block"><span class="date">Culture</span> <span class="mx-1">&bullet;</span> <span>Jul 5th '22</span></div>
+                                        <span>Life Insurance And Pregnancy: A Working Mom’s Guide</span>
+                                    </div>
+                                </a>
+                            </li>
+
+                            <li>
+                                <a href="single-post.html" class="d-flex align-items-center">
+                                    <img src="assets/img/post-sq-4.jpg" alt="" class="img-fluid me-3">
+                                    <div>
+                                        <div class="post-meta d-block"><span class="date">Culture</span> <span class="mx-1">&bullet;</span> <span>Jul 5th '22</span></div>
+                                        <span>How to Avoid Distraction and Stay Focused During Video Calls?</span>
+                                    </div>
+                                </a>
+                            </li>
+
+                        </ul>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="footer-legal">
+            <div class="container">
+
+                <div class="row justify-content-between">
+                    <div class="col-md-6 text-center text-md-start mb-3 mb-md-0">
+                        <div class="copyright">
+                            © Copyright <strong><span>ZenBlog</span></strong>. All Rights Reserved
+                        </div>
+
+                        <div class="credits">
+                            <!-- All the links in the footer should remain intact. -->
+                            <!-- You can delete the links only if you purchased the pro version. -->
+                            <!-- Licensing information: https://bootstrapmade.com/license/ -->
+                            <!-- Purchase the pro version with working PHP/AJAX contact form: https://bootstrapmade.com/herobiz-bootstrap-business-template/ -->
+                            Designed by <a href="https://bootstrapmade.com/">BootstrapMade</a>
+                        </div>
+
+                    </div>
+
+                    <div class="col-md-6">
+                        <div class="social-links mb-3 mb-lg-0 text-center text-md-end">
+                            <a href="#" class="twitter"><i class="bi bi-twitter"></i></a>
+                            <a href="#" class="facebook"><i class="bi bi-facebook"></i></a>
+                            <a href="#" class="instagram"><i class="bi bi-instagram"></i></a>
+                            <a href="#" class="google-plus"><i class="bi bi-skype"></i></a>
+                            <a href="#" class="linkedin"><i class="bi bi-linkedin"></i></a>
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+
+    </footer>
+
+    <a href="#" class="scroll-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+
+    <!-- Vendor JS Files -->
+    <script src="/Content/assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="/Content/assets/vendor/swiper/swiper-bundle.min.js"></script>
+    <script src="/Content/assets/vendor/glightbox/js/glightbox.min.js"></script>
+    <script src="/Content/assets/vendor/aos/aos.js"></script>
+    <script src="/Content/assets/vendor/php-email-form/validate.js"></script>
+
+    <!-- Template Main JS File -->
+    <script src="/Content/assets/js/main.js"></script>
+
+</body>
+
+</html>
