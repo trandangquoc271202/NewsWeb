@@ -14,7 +14,7 @@ namespace NewsWeb.Controllers
         {
            
             string content = "";
-            string url = "https://vnexpress.net/khoi-nghiep-tu-long-ga-4681261.html";
+            string url = Request["id"];
 
             HtmlWeb web = new HtmlWeb();
             HtmlDocument doc = web.Load(url);
