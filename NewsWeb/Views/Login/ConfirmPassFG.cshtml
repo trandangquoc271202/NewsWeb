@@ -1,0 +1,44 @@
+﻿
+@{
+    Layout = null;
+    String er = ViewBag.ErrorMessage;
+
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!--=============== REMIXICONS ===============-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/3.5.0/remixicon.css" crossorigin="">
+
+    <!--=============== CSS ===============-->
+    <link rel="stylesheet" href="~/Content/assets/login/css/styles.css">
+
+    <title>Login form - MiTi</title>
+</head>
+<body>
+    <div class="login">
+        <img src="~/Content/assets/login/img/login-bg.png" alt="image" class="login__bg">
+
+        <form action="@Url.Action("ConfirmCodePassFG", "Login")" method="post" class="login__form">
+            <h1 class="login__title">Xác nhận code</h1>
+            <span>@er</span>
+            <div class="login__inputs">
+                <div class="login__box">
+                    <input type="text" name="codeConfirmFG" placeholder="Mã xác nhận" required class="login__input">
+                    <i class="ri-mail-fill"></i>
+                </div>
+
+            </div>
+            <button type="submit" class="login__button">Xác nhận</button>
+
+            <div class="login__register">
+                Bạn chưa nhận được ? <a href="~/Login/SendAgainCode">Gửi lại</a>
+            </div>
+        </form>
+    </div>
+</body>
+</html>

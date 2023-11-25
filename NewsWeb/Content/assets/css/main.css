@@ -332,9 +332,9 @@ section {
 }
 
 @media (min-width: 1280px) and (max-width: 1366px) {
-  .navbar .dropdown .dropdown ul {
-    left: -90%;
-  }
+    .navbar .dropdown .dropdown .menu ul {
+        left: -90%;
+    }
 
   .navbar .dropdown .dropdown:hover>ul {
     left: -100%;
@@ -345,6 +345,11 @@ section {
   display: none;
 }
 
+@media (min-width: 1400px) {
+    .menu, .submenu {
+        max-width: 1320px;
+    }
+}
 /*--------------------------------------------------------------
 # Mobile Navigation
 --------------------------------------------------------------*/
@@ -1298,3 +1303,29 @@ section {
 .footer .credits a {
   color: var(--color-white);
 }
+
+.position-relative {
+    position: relative;
+    padding: 10px;
+    background-color: #f0f0f0;
+}
+
+    /* Style for the greeting text */
+    .position-relative span {
+        font-weight: bold;
+    }
+
+/* Style for the child menu items */
+/* Basic styling for the parent menu */
+.position-relative {
+    position: relative;
+    padding: 10px;
+    background-color: #f0f0f0;
+}
+
+    /* Style for the greeting text */
+    .position-relative span {
+        font-weight: bold;
+    }
+
+/* Style for the dropdown menu */

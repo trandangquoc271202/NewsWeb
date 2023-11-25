@@ -14,9 +14,8 @@ namespace NewsWeb.Controllers
         {
             List<RssItem> list = new List<RssItem>();
             ConvertRssToList convertRssToList = new ConvertRssToList();
+            list = convertRssToList.GetRssItems("https://vnexpress.net/rss/thoi-su.rss");
 
-            list = convertRssToList.GetRssItems("https://vnexpress.net/rss/suc-khoe.rss");
-        
             return View(list);
         }
     }
