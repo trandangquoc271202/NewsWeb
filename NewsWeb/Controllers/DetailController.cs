@@ -23,7 +23,7 @@ namespace NewsWeb.Controllers
 
             if (sidebarNode != null)
             {
-                content = sidebarNode.InnerHtml;
+                content = sidebarNode.InnerHtml.Replace("data-src", "src");
                
             }
             
