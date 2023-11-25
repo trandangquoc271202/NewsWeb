@@ -1304,3 +1304,28 @@ section {
   color: var(--color-white);
 }
 
+.position-relative {
+    position: relative;
+    padding: 10px;
+    background-color: #f0f0f0;
+}
+
+    /* Style for the greeting text */
+    .position-relative span {
+        font-weight: bold;
+    }
+
+/* Style for the child menu items */
+/* Basic styling for the parent menu */
+.position-relative {
+    position: relative;
+    padding: 10px;
+    background-color: #f0f0f0;
+}
+
+    /* Style for the greeting text */
+    .position-relative span {
+        font-weight: bold;
+    }
+
+/* Style for the dropdown menu */

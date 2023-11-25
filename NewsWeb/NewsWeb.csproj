@@ -135,6 +135,7 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\InfoUserController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
     <Compile Include="Controllers\NewsController.cs" />
     <Compile Include="Controllers\RegisterController.cs" />
@@ -142,9 +143,10 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\ConvertRssToList.cs" />
-    <Compile Include="Models\Customer.cs" />
+    <Compile Include="Models\EmailSender.cs" />
     <Compile Include="Models\Model1.cs" />
     <Compile Include="Models\RssItem.cs" />
+    <Compile Include="Models\Users.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -294,6 +296,13 @@
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Register\Register.cshtml" />
+    <Content Include="Views\Register\ConfirmCode.cshtml" />
+    <Content Include="Views\Login\ForgotPassword.cshtml" />
+    <Content Include="Views\Login\ConfirmPassFG.cshtml" />
+    <Content Include="Views\Login\ChangePasswrodFG.cshtml" />
+    <Content Include="Views\InfoUser\InfoUser.cshtml" />
+    <Content Include="Views\InfoUser\ChangeInfo.cshtml" />
+    <Content Include="Views\InfoUser\ChangePassword.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -6,8 +6,7 @@ namespace NewsWeb.Models
     using System.ComponentModel.DataAnnotations.Schema;
     using System.Data.Entity.Spatial;
 
-    [Table("Customer")]
-    public partial class Customer
+    public partial class Users
     {
         public int id { get; set; }
 
@@ -27,5 +26,14 @@ namespace NewsWeb.Models
         public string permission { get; set; }
 
         public bool status { get; set; }
+
+        [StringLength(20)]
+        public string phone { get; set; }
+
+        [StringLength(40)]
+        public string address { get; set; }
+
+        [StringLength(40)]
+        public string birthDay { get; set; }
     }
 }

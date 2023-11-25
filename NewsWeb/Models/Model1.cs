@@ -12,24 +12,36 @@ namespace NewsWeb.Models
         {
         }
 
-        public virtual DbSet<Customer> Customers { get; set; }
+        public virtual DbSet<Users> Users { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<Customer>()
+            modelBuilder.Entity<Users>()
                 .Property(e => e.name)
                 .IsFixedLength();
 
-            modelBuilder.Entity<Customer>()
+            modelBuilder.Entity<Users>()
                 .Property(e => e.email)
                 .IsFixedLength();
 
-            modelBuilder.Entity<Customer>()
+            modelBuilder.Entity<Users>()
                 .Property(e => e.password)
                 .IsFixedLength();
 
-            modelBuilder.Entity<Customer>()
+            modelBuilder.Entity<Users>()
                 .Property(e => e.permission)
+                .IsFixedLength();
+
+            modelBuilder.Entity<Users>()
+                .Property(e => e.phone)
+                .IsFixedLength();
+
+            modelBuilder.Entity<Users>()
+                .Property(e => e.address)
+                .IsFixedLength();
+
+            modelBuilder.Entity<Users>()
+                .Property(e => e.birthDay)
                 .IsFixedLength();
         }
     }

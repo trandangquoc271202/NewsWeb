@@ -1,5 +1,7 @@
 ﻿@{
-            Layout = null;
+    Layout = null;
+    var loggedInUser = Session["LoggedInUser"] as NewsWeb.Models.Users;
+
 }
     <!DOCTYPE html>
     <html lang="en">
@@ -8,7 +10,7 @@
         <meta charset="utf-8">
         <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
-        <title>ZenBlog Bootstrap Template - Search Results</title>
+        <title>BaoMiTi</title>
         <meta content="" name="description">
         <meta content="" name="keywords">
 
@@ -72,6 +74,62 @@
                     flex-wrap: wrap;
                     justify-content: left;
                 }
+
+
+            /* Style for the dropdown menu */
+            .menu_user {
+                list-style-type: none;
+                padding: 0;
+                position: absolute;
+                top: 100%; /* Position the dropdown below the parent */
+                left: 0;
+                display: none; /* Hide the dropdown by default */
+                box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Add a box shadow */
+                background: white;
+                width: 200px;
+                box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Add a box shadow to each menu item */
+            }
+
+                .menu_user li {
+                    display: inline-block;
+                    margin: 5px;
+                    width: 100%;
+                    
+                }
+
+                .menu_user a {
+                    text-decoration: none;
+                    color: #333;
+                    font-weight: bold;
+                    padding: 5px;
+                    border-radius: 5px;
+                    transition: background-color 0.3s;
+                    display: block;
+                    
+                }
+
+                    .menu_user a:hover {
+                        background-color: #ddd;
+                    }
+
+
+                    .menu_user a:hover {
+                        background-color: #ddd;
+                    }
+
+            /* Show the dropdown menu when hovering over the parent */
+            .position-relative:hover .menu_user {
+                display: block;
+            }
+
+            /* Additional styling for the login and register links in the else block */
+            .position-relative a {
+                text-decoration: none;
+                color: #333;
+                font-weight: bold;
+                margin-right: 10px;
+            }
+
         </style>
 
         <!-- =======================================================
@@ -92,7 +150,7 @@
                 <a href="index.html" class="logo d-flex align-items-center">
                     <!-- Uncomment the line below if you also wish to use an image logo -->
                     <!-- <img src="assets/img/logo.png" alt=""> -->
-                    <h1>ZenBlog</h1>
+                    <h1>BaoMiTi</h1>
                 </a>
 
                 <nav id="navbar" class="navbar">
@@ -124,26 +182,45 @@
                         <li><a href="contact.html">Contact</a></li>
                     </ul>
                 </nav><!-- .navbar -->
+                @if (loggedInUser != null)
+                {
+                    <div class="position-relative">
+                        <span>Xin chào @loggedInUser.name</span>
+                        <ul class="menu_user">
+                            <li><a href="~/InfoUser/InfoUser">Thông tin người dùng</a></li>
+                            <li><a href="~/InfoUser/ChangePassword">Thay đổi mật khẩu</a></li>
+                            <li><a href="~/Login/Logout">Đăng xuất</a></li>
+                        </ul>
+                    </div>
+                }
+                else
+                {
+                    <div class="position-relative">
+                        <a href="~/Login/Login" class="mx-2">Đăng nhập</a>
+                        <a href="~/Register/Register" class="mx-2">Đăng ký</a>
+                    </div>
+                }
 
-                <div class="position-relative">
-                    <a href="~/Login/Login" class="mx-2">Sign up</a>
 
 
-                    <a href="#" class="mx-2 js-search-open"><span class="bi-search"></span></a>
-                    <i class="bi bi-list mobile-nav-toggle"></i>
 
-                    <!-- ======= Search Form ======= -->
-                    <div class="search-form-wrap js-search-form-wrap">
-                        <form action="search-result.html" class="search-form">
-                            <span class="icon bi-search"></span>
-                            <input type="text" placeholder="Search" class="form-control">
-                            <button class="btn js-search-close"><span class="bi-x"></span></button>
-                        </form>
-                    </div><!-- End Search Form -->
 
-                </div>
+
+                <a href="#" class="mx-2 js-search-open"><span class="bi-search"></span></a>
+                <i class="bi bi-list mobile-nav-toggle"></i>
+
+                <!-- ======= Search Form ======= -->
+                <div class="search-form-wrap js-search-form-wrap">
+                    <form action="search-result.html" class="search-form">
+                        <span class="icon bi-search"></span>
+                        <input type="text" placeholder="Search" class="form-control">
+                        <button class="btn js-search-close"><span class="bi-x"></span></button>
+                    </form>
+                </div><!-- End Search Form -->
 
             </div>
+
+                </div>
 
         </header><!-- End Header -->
         <main id="main">
