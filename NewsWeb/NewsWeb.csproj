@@ -136,6 +136,7 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\CategoryController.cs" />
+    <Compile Include="Controllers\DetailController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\InfoUserController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
@@ -315,6 +316,7 @@
     <Content Include="Views\Category\Travel.cshtml" />
     <Content Include="Views\Category\World.cshtml" />
     <Content Include="Views\Shared\Header.cshtml" />
+    <Content Include="Views\Detail\Detail.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
