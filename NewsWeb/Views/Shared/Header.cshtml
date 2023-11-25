@@ -1,0 +1,174 @@
+﻿@{
+    Layout = null;
+    var loggedInUser = Session["LoggedInUser"] as NewsWeb.Models.Users;
+
+}
+<style>
+
+
+    .menu {
+        display: flex;
+        background-color: #333;
+        color: #fff;
+        padding: 10px;
+        width: 100%;
+        align-items: center !important;
+        --bs-gutter-x: 1.5rem;
+        margin-right: auto;
+        margin-left: auto;
+    }
+
+        .menu a {
+            text-decoration: none;
+            color: #fff;
+            margin: 0 10px;
+        }
+
+    .submenu {
+        display: none;
+        --bs-gutter-x: 1.5rem;
+        margin-right: auto;
+        margin-left: auto;
+        background-color: #555;
+    }
+
+        .submenu a {
+            margin-left: 15px;
+            color: white;
+        }
+
+        .submenu.active {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: left;
+        }
+
+
+    /* Style for the dropdown menu */
+    .menu_user {
+        list-style-type: none;
+        padding: 0;
+        position: absolute;
+        top: 100%; /* Position the dropdown below the parent */
+        left: 0;
+        display: none; /* Hide the dropdown by default */
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Add a box shadow */
+        background: white;
+        width: 200px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Add a box shadow to each menu item */
+    }
+
+        .menu_user li {
+            display: inline-block;
+            margin: 5px;
+            width: 100%;
+        }
+
+        .menu_user a {
+            text-decoration: none;
+            color: #333;
+            font-weight: bold;
+            padding: 5px;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+            display: block;
+        }
+
+            .menu_user a:hover {
+                background-color: #ddd;
+            }
+
+
+            .menu_user a:hover {
+                background-color: #ddd;
+            }
+
+    /* Show the dropdown menu when hovering over the parent */
+    .position-relative:hover .menu_user {
+        display: block;
+    }
+
+    /* Additional styling for the login and register links in the else block */
+    .position-relative a {
+        text-decoration: none;
+        color: #333;
+        font-weight: bold;
+        margin-right: 10px;
+    }
+</style>
+<header id="header" class="header d-flex align-items-center fixed-top">
+    <div class="container-fluid container-xl d-flex align-items-center justify-content-between">
+
+        <a href="index.html" class="logo d-flex align-items-center">
+            <!-- Uncomment the line below if you also wish to use an image logo -->
+            <!-- <img src="assets/img/logo.png" alt=""> -->
+            <h1>BaoMiTi</h1>
+        </a>
+
+        <nav id="navbar" class="navbar">
+            <ul>
+                <li><a href="/Home/Index">Trang chủ</a></li>
+                <li class="dropdown">
+                    <a href="category.html"><span>Danh mục</span> <i class="bi bi-chevron-down dropdown-indicator"></i></a>
+                    <ul>
+                        <li><a href="/Category/World">Thế giới</a></li>
+                        <li><a href="/Category/News">Thời sự</a></li>
+                        <li><a href="/Category/Business">Kinh doanh</a></li>
+                        <li><a href="/Category/Entertainment">Giải trí</a></li>
+                        <li><a href="/Category/Sport">Thể thao</a></li>
+                        <li><a href="/Category/Law">Pháp luật</a></li>
+                        <li><a href="/Category/Education">Giáo dục</a></li>
+                        <li><a href="/Category/Health">Sức khỏe</a></li>
+                        <li><a href="/Category/Life">Đời sống</a></li>
+                        <li><a href="/Category/Travel">Du lịch</a></li>
+                        <li><a href="/Category/"></a></li>
+                    </ul>
+                </li>
+
+                <li><a href="about.html">Thông tin</a></li>
+                <li><a href="contact.html">Liên hệ</a></li>
+            </ul>
+        </nav><!-- .navbar -->
+        @if (loggedInUser != null)
+        {
+            <div class="position-relative">
+                <span>Xin chào @loggedInUser.name</span>
+                <ul class="menu_user">
+                    <li><a href="~/InfoUser/InfoUser">Thông tin người dùng</a></li>
+                    <li><a href="~/InfoUser/ChangePassword">Thay đổi mật khẩu</a></li>
+                    <li><a href="~/Login/Logout">Đăng xuất</a></li>
+                </ul>
+            </div>
+        }
+        else
+        {
+            <div class="position-relative">
+                <a href="~/Login/Login" class="mx-2">Đăng nhập</a>
+                <a href="~/Register/Register" class="mx-2">Đăng ký</a>
+            </div>
+        }
+
+
+
+
+
+
+        <a href="#" class="mx-2 js-search-open"><span class="bi-search"></span></a>
+        <i class="bi bi-list mobile-nav-toggle"></i>
+
+        <!-- ======= Search Form ======= -->
+        <div class="search-form-wrap js-search-form-wrap">
+            <form action="search-result.html" class="search-form">
+                <span class="icon bi-search"></span>
+                <input type="text" placeholder="Search" class="form-control">
+                <button class="btn js-search-close"><span class="bi-x"></span></button>
+            </form>
+        </div><!-- End Search Form -->
+
+    </div>
+
+    </div>
+
+</header>
+
+
