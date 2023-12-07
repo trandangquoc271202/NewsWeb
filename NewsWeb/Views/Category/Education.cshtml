@@ -56,12 +56,12 @@
                     <div class="col-md-9">
 
                         <div class="d-lg-flex post-entry-2">
-                            <a href="single-post.html" class="me-4 thumbnail mb-4 mb-lg-0 d-inline-block">
+                            <a href="/Detail/Detail?id=@Model[0].Link" class="me-4 thumbnail mb-4 mb-lg-0 d-inline-block">
                                 <img src="@Model[0].Image" alt="" class="img-fluid">
                             </a>
                             <div>
                                 <div class="post-meta">@Model[0].PublishDate</div>
-                                <h3><a href="single-post.html">@Model[0].Title</a></h3>
+                                <h3><a href="/Detail/Detail?id=@Model[0].Link">@Model[0].Title</a></h3>
                                 <p>@Model[0].Description</p>
                                 <div class="d-flex align-items-center author">
                                     <div class="photo"><img src="assets/img/person-2.jpg" alt="" class="img-fluid"></div>
@@ -75,24 +75,24 @@
                         <div class="row">
                             <div class="col-lg-4">
                                 <div class="post-entry-1 border-bottom">
-                                    <a href="single-post.html"><img src="@Model[1].Image" alt="" class="img-fluid"></a>
+                                    <a href="/Detail/Detail?id=@Model[1].Link"><img src="@Model[1].Image" alt="" class="img-fluid"></a>
                                     <div class="post-meta">@Model[1].PublishDate</div>
-                                    <h2 class="mb-2"><a href="single-post.html">@Model[1].Title</a></h2>
+                                    <h2 class="mb-2"><a href="/Detail/Detail?id=@Model[1].Link">@Model[1].Title</a></h2>
                                     <span class="author mb-3 d-block"></span>
                                     <p class="mb-4 d-block">@Model[1].Description</p>
                                 </div>
 
                                 <div class="post-entry-1">
                                     <div class="post-meta">@Model[2].PublishDate</div>
-                                    <h2 class="mb-2"><a href="single-post.html">@Model[2].Title</a></h2>
+                                    <h2 class="mb-2"><a href="/Detail/Detail?id=@Model[2].Link">@Model[2].Title</a></h2>
                                     <span class="author mb-3 d-block"></span>
                                 </div>
                             </div>
                             <div class="col-lg-8">
                                 <div class="post-entry-1">
-                                    <a href="single-post.html"><img src="@Model[3].Image" alt="" class="img-fluid"></a>
+                                    <a href="/Detail/Detail?id=@Model[3].Link"><img src="@Model[3].Image" alt="" class="img-fluid"></a>
                                     <div class="post-meta">@Model[3].PublishDate</div>
-                                    <h2 class="mb-2"><a href="single-post.html">@Model[3].Title</a></h2>
+                                    <h2 class="mb-2"><a href="/Detail/Detail?id=@Model[3].Link">@Model[3].Title</a></h2>
                                     <span class="author mb-3 d-block"></span>
                                     <p class="mb-4 d-block">@Model[3].Description</p>
                                 </div>
@@ -104,9 +104,9 @@
                         @for (int i = 4; i < 7; i++)
                         {
                             <div class="post-entry-1">
-                                <a href="single-post.html"><img src="@Model[i].Image" alt="" class="img-fluid"></a>
+                                <a href="/Detail/Detail?id=@Model[i].Link"><img src="@Model[i].Image" alt="" class="img-fluid"></a>
                                 <div class="post-meta">@Model[i].PublishDate</div>
-                                <h2><a href="single-post.html">@Model[i].Title</a></h2>
+                                <h2><a href="/Detail/Detail?id=@Model[i].Link">@Model[i].Title</a></h2>
                             </div>
                         }
                     </div>
@@ -124,12 +124,12 @@
                     <div class="col-md-9 order-md-2">
 
                         <div class="d-lg-flex post-entry-2">
-                            <a href="single-post.html" class="me-4 thumbnail d-inline-block mb-4 mb-lg-0">
+                            <a href="/Detail/Detail?id=@Model[7].Link" class="me-4 thumbnail d-inline-block mb-4 mb-lg-0">
                                 <img src="@Model[7].Image" alt="" class="img-fluid">
                             </a>
                             <div>
                                 <div class="post-meta">@Model[7].PublishDate</div>
-                                <h3><a href="single-post.html">@Model[7].Title</a></h3>
+                                <h3><a href="/Detail/Detail?id=@Model[7].Link">@Model[7].Title</a></h3>
                                 <p>@Model[7].Description</p>
                                 <div class="d-flex align-items-center author">
                                     <div class="photo"><img src="assets/img/person-4.jpg" alt="" class="img-fluid"></div>
@@ -143,24 +143,24 @@
                         <div class="row">
                             <div class="col-lg-4">
                                 <div class="post-entry-1 border-bottom">
-                                    <a href="single-post.html"><img src="@Model[8].Image" alt="" class="img-fluid"></a>
+                                    <a href="/Detail/Detail?id=@Model[8].Link"><img src="@Model[8].Image" alt="" class="img-fluid"></a>
                                     <div class="post-meta">@Model[8].PublishDate</div>
-                                    <h2 class="mb-2"><a href="single-post.html">@Model[8].Title</a></h2>
+                                    <h2 class="mb-2"><a href="/Detail/Detail?id=@Model[8].Link">@Model[8].Title</a></h2>
                                     <span class="author mb-3 d-block"></span>
                                     <p class="mb-4 d-block">@Model[8].Description</p>
                                 </div>
 
                                 <div class="post-entry-1">
                                     <div class="post-meta">@Model[9].PublishDate</div>
-                                    <h2 class="mb-2"><a href="single-post.html">@Model[9].Title</a></h2>
+                                    <h2 class="mb-2"><a href="/Detail/Detail?id=@Model[9].Link">@Model[9].Title</a></h2>
                                     <span class="author mb-3 d-block"></span>
                                 </div>
                             </div>
                             <div class="col-lg-8">
                                 <div class="post-entry-1">
-                                    <a href="single-post.html"><img src="@Model[10].Image" alt="" class="img-fluid"></a>
+                                    <a href="/Detail/Detail?id=@Model[10].Link"><img src="@Model[10].Image" alt="" class="img-fluid"></a>
                                     <div class="post-meta">@Model[10].PublishDate</div>
-                                    <h2 class="mb-2"><a href="single-post.html">@Model[10].Title</a></h2>
+                                    <h2 class="mb-2"><a href="/Detail/Detail?id=@Model[10].Link">@Model[10].Title</a></h2>
                                     <span class="author mb-3 d-block"></span>
                                     <p class="mb-4 d-block">@Model[10].Description</p>
                                 </div>
@@ -171,9 +171,9 @@
                         @for (int i = 11; i < 14; i++)
                         {
                             <div class="post-entry-1">
-                                <a href="single-post.html"><img src="@Model[i].Image" alt="" class="img-fluid"></a>
+                                <a href="/Detail/Detail?id=@Model[i].Link"><img src="@Model[i].Image" alt="" class="img-fluid"></a>
                                 <div class="post-meta">@Model[i].PublishDate</div>
-                                <h2><a href="single-post.html">@Model[i].Title</a></h2>
+                                <h2><a href="/Detail/Detail?id=@Model[i].Link">@Model[i].Title</a></h2>
                             </div>
                         }
                     </div>
@@ -189,15 +189,15 @@
                 <div class="row">
                     <div class="col-md-9">
                         <h3 class="category-title">Search Results</h3>
-                        @for (int i = 29; i < 52; i++)
+                        @for (int i = 29; i < Model.Count; i++)
                         {
                             <div class="d-md-flex post-entry-2 small-img">
-                                <a href="@Model[i].Link" class="me-4 thumbnail">
+                                <a href="/Detail/Detail?id=@Model[i].Link" class="me-4 thumbnail">
                                     <img src="@Model[i].Image" alt="" class="img-fluid">
                                 </a>
                                 <div>
                                     <div class="post-meta">@Model[i].PublishDate</div>
-                                    <h3><a href="@Model[i].Link">@Model[i].Title</a></h3>
+                                    <h3><a href="/Detail/Detail?id=@Model[i].Link">@Model[i].Title</a></h3>
                                     <p>@Model[i].Description</p>
                                     <div class="d-flex align-items-center author">
                                         <div class="photo"><img src="assets/img/person-2.jpg" alt="" class="img-fluid"></div>
@@ -219,9 +219,9 @@
                             @for (int i = 14; i < 29; i++)
                             {
                                 <div class="post-entry-1">
-                                    <a href="single-post.html"><img src="@Model[i].Image" alt="" class="img-fluid"></a>
+                                    <a href="/Detail/Detail?id=@Model[i].Link"><img src="@Model[i].Image" alt="" class="img-fluid"></a>
                                     <div class="post-meta">@Model[i].PublishDate</div>
-                                    <h2><a href="single-post.html">@Model[i].Title</a></h2>
+                                    <h2><a href="/Detail/Detail?id=@Model[i].Link">@Model[i].Title</a></h2>
                                 </div>
                             }
                         </div>
