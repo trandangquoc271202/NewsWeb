@@ -38,7 +38,7 @@ namespace NewsWeb.Controllers
                 }
                 else
                 {
-                    return RedirectToAction("News", "News");
+                    return RedirectToAction("Index", "Home");
                 }
 
 
@@ -58,7 +58,7 @@ namespace NewsWeb.Controllers
                 Session.Abandon();
 
             }
-            return RedirectToAction("News", "News");
+            return RedirectToAction("Index", "Home");
         }
 
         public ActionResult ForgotPassword()
