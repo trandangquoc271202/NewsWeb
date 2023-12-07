@@ -114,7 +114,7 @@ namespace NewsWeb.Controllers
                 Session.Remove("userRe");
                 Session.Remove("index");
                 Session["LoggedInUser"] = user;
-                return RedirectToAction("News", "News");
+                return RedirectToAction("Index", "Home");
             }
             int index = (int)Session["index"];
             if(index == 0)

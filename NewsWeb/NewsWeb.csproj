@@ -145,6 +145,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\Comments.cs" />
     <Compile Include="Models\ConvertRssToList.cs" />
     <Compile Include="Models\EmailSender.cs" />
     <Compile Include="Models\Model1.cs" />

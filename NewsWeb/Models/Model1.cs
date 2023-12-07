@@ -8,14 +8,19 @@ namespace NewsWeb.Models
     public partial class Model1 : DbContext
     {
         public Model1()
-            : base("name=DBConectWeb")
+            : base("name=Model11")
         {
         }
 
+        public virtual DbSet<Comments> Comments { get; set; }
         public virtual DbSet<Users> Users { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
+            modelBuilder.Entity<Comments>()
+                .Property(e => e.link)
+                .IsUnicode(false);
+
             modelBuilder.Entity<Users>()
                 .Property(e => e.name)
                 .IsFixedLength();
