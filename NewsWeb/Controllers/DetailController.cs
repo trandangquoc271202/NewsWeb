@@ -1,4 +1,5 @@
 ﻿using HtmlAgilityPack;
+using NewsWeb.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,6 +10,7 @@ namespace NewsWeb.Controllers
 {
     public class DetailController : Controller
     {
+        Model1 db = new Model1();
         // GET: Detail
         public ActionResult Detail()
         {
@@ -26,8 +28,36 @@ namespace NewsWeb.Controllers
                 content = sidebarNode.InnerHtml.Replace("data-src", "src");
                
             }
-            
-            return View((object)content);
+            ViewBag.ContentObject = (object)content;
+            ViewBag.link = url;
+
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult Comment(FormCollection form)
+        {
+            string comment = form["comment"];
+            string url = form["link"];
+            Users user = Session["LoggedInUser"] as Users;
+            if (user != null)
+            {
+                //Comments commentNews = new Comments
+                // {
+                //idUser = user.id,
+                //link = url,
+                // message = comment,
+                //    dateTimeComment = DateTime.Now
+                //};
+                //db.Comments.Add(commentNews);
+                //db.SaveChanges();
+                return Redirect("/Detail/Detail?id="+url);
+            }
+            else
+            {
+                return RedirectToAction("Login", "Login");
+            }
+            return View();
         }
     }
 }
