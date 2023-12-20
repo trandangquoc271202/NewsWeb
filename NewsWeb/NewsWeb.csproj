@@ -145,10 +145,19 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Models\Comments.cs" />
+    <Compile Include="Migrations\202312201322024_DBInit.cs" />
+    <Compile Include="Migrations\202312201322024_DBInit.Designer.cs">
+      <DependentUpon>202312201322024_DBInit.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202312201340420_DBInit2.cs" />
+    <Compile Include="Migrations\202312201340420_DBInit2.Designer.cs">
+      <DependentUpon>202312201340420_DBInit2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Models\MigrationsConfiguration.cs" />
+    <Compile Include="Models\Model1.cs" />
+    <Compile Include="Models\Comment.cs" />
     <Compile Include="Models\ConvertRssToList.cs" />
     <Compile Include="Models\EmailSender.cs" />
-    <Compile Include="Models\Model1.cs" />
     <Compile Include="Models\RssItem.cs" />
     <Compile Include="Models\Users.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -334,6 +343,14 @@
     <None Include="packages.config" />
     <Content Include="Scripts\jquery-3.3.1.slim.min.map" />
     <Content Include="Scripts\jquery-3.3.1.min.map" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\202312201322024_DBInit.resx">
+      <DependentUpon>202312201322024_DBInit.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202312201340420_DBInit2.resx">
+      <DependentUpon>202312201340420_DBInit2.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
