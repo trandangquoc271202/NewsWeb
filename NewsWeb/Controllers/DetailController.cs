@@ -42,15 +42,15 @@ namespace NewsWeb.Controllers
             Users user = Session["LoggedInUser"] as Users;
             if (user != null)
             {
-                //Comments commentNews = new Comments
-                // {
-                //idUser = user.id,
-                //link = url,
-                // message = comment,
-                //    dateTimeComment = DateTime.Now
-                //};
-                //db.Comments.Add(commentNews);
-                //db.SaveChanges();
+                Comment commentNews = new Comment
+                 {
+                idUser = user.id,
+                link = url,
+                 message = comment,
+                    dateTimeComment = DateTime.Now
+                };
+                db.Comments.Add(commentNews);
+                db.SaveChanges();
                 return Redirect("/Detail/Detail?id="+url);
             }
             else

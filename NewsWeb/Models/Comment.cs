@@ -6,11 +6,13 @@ namespace NewsWeb.Models
     using System.ComponentModel.DataAnnotations.Schema;
     using System.Data.Entity.Spatial;
 
-    public partial class Comments
+    public partial class Comment
     {
+        [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.None)]
         public int id { get; set; }
 
+        [Required]
         public int idUser { get; set; }
 
         [Required]
@@ -19,6 +21,7 @@ namespace NewsWeb.Models
         [Required]
         public string message { get; set; }
 
+        [Required]
         public DateTime dateTimeComment { get; set; }
     }
 }
