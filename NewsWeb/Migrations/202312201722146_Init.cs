@@ -3,15 +3,27 @@ namespace NewsWeb.Models
     using System;
     using System.Data.Entity.Migrations;
     
-    public partial class DBInit : DbMigration
+    public partial class Init : DbMigration
     {
         public override void Up()
         {
             CreateTable(
+                "dbo.Comments",
+                c => new
+                    {
+                        id = c.Int(nullable: false, identity: true),
+                        idUser = c.Int(nullable: false),
+                        link = c.String(nullable: false),
+                        message = c.String(nullable: false),
+                        dateTimeComment = c.DateTime(nullable: false),
+                    })
+                .PrimaryKey(t => t.id);
+            
+            CreateTable(
                 "dbo.Users",
                 c => new
                     {
-                        id = c.Int(nullable: false),
+                        id = c.Int(nullable: false, identity: true),
                         email = c.String(nullable: false, maxLength: 40),
                         password = c.String(nullable: false, maxLength: 40),
                         permission = c.String(nullable: false, maxLength: 10),
@@ -28,6 +40,7 @@ namespace NewsWeb.Models
         public override void Down()
         {
             DropTable("dbo.Users");
+            DropTable("dbo.Comments");
         }
     }
 }

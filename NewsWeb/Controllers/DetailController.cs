@@ -26,11 +26,26 @@ namespace NewsWeb.Controllers
             if (sidebarNode != null)
             {
                 content = sidebarNode.InnerHtml.Replace("data-src", "src");
-               
             }
+
+            var query = from comment in db.Comments
+                        join user in db.Users on comment.idUser equals user.id
+                        where comment.link == url
+                        orderby comment.dateTimeComment descending
+                        select new DetailComment
+                        {
+                            id = comment.id,
+                            nameUser = user.name,
+                            idUser = comment.idUser,
+                            message = comment.message
+                        };
+
+            // Thực hiện truy vấn và lấy kết quả
+            var result = query.ToList();
+
             ViewBag.ContentObject = (object)content;
             ViewBag.link = url;
-
+            ViewBag.ItemList = result;
             return View();
         }
 
@@ -58,6 +73,22 @@ namespace NewsWeb.Controllers
                 return RedirectToAction("Login", "Login");
             }
             return View();
+        }
+
+        [HttpPost]
+        public ActionResult RemoveComment(FormCollection form)
+        {
+            string id = form["id"];
+            string url = form["link"];
+
+            var teacher = db.Comments.Find(int.Parse(id));
+            if (teacher != null)
+            {
+                db.Comments.Remove(teacher);
+                db.SaveChanges();
+            }
+
+            return Redirect("/Detail/Detail?id=" + url);
         }
     }
 }
