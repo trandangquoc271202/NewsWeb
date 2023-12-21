@@ -23,53 +23,71 @@ namespace NewsWeb.Controllers
             return View();
         }
         [HttpPost]
-
         public ActionResult RegisterUser(FormCollection form)
         {
             string email = form["email"];
             string password = form["password"];
             string rePassword = form["re_password"];
 
-            if (password.Equals(rePassword))
+            if (ModelState.IsValid)
             {
-                // Check if the user already exists in the database
-                bool userExists = db.Users.Any(u => u.email == email);
-
-                if (userExists)
+                if (password.Equals(rePassword))
                 {
-                    ViewBag.ErrorMessage = "User with this email already exists.";
+                    // Check if the user already exists in the database
+                    bool userExists = db.Users.Any(u => u.email == email);
+
+                    if (userExists)
+                    {
+                        ViewBag.ErrorMessage = "User with this email already exists.";
+                    }
+                    else
+                    {
+                        // Password validation
+                        if (IsPasswordValid(password))
+                        {
+                            int atIndex = email.IndexOf('@');
+                            string username = atIndex != -1 ? email.Substring(0, atIndex) : email;
+                            Users newUser = new Users
+                            {
+                                name = username,
+                                email = email,
+                                password = password,
+                                permission = "user",
+                                status = true,
+                            };
+
+                            String xacNhan = RandomNumber();
+                            Session["userRe"] = newUser;
+                            Session["code"] = xacNhan;
+                            Session["index"] = 5;
+                            EmailSender e = new EmailSender();
+                            e.SendEmail(email, "Xác nhận đăng ký", "Mã xác nhận của bạn là: " + xacNhan);
+                            return View("ConfirmCode");
+                        }
+                        else
+                        {
+                            ViewBag.ErrorMessage = "Password must be at least 8 characters long and contain at least one uppercase letter and one special character.";
+                        }
+                    }
                 }
                 else
                 {
-
-                    int atIndex = email.IndexOf('@');
-                    string username = atIndex != -1 ? email.Substring(0, atIndex) : email;
-                    Users newUser = new Users
-                    {
-                        name = username,
-                        email = email,
-                        password = password,
-                        permission = "user",
-                        status = true,
-
-                    };
-
-                    String xacNhan = RandomNumber();
-                    Session["userRe"] = newUser;
-                    Session["code"] = xacNhan;
-                    Session["index"] = 5;
-                    EmailSender e = new EmailSender();
-                    e.SendEmail(email, "Xác nhận đăng ký", "Mã xác nhận của bạn là: " + xacNhan);
-                    return View("ConfirmCode");
+                    ViewBag.ErrorMessage = "Passwords do not match.";
                 }
-            }
-            else
-            {
-                ViewBag.ErrorMessage = "Passwords do not match.";
             }
 
             return View("Register");
         }
+
+        private bool IsPasswordValid(string password)
+        {
+            // Add your password validation logic here
+            // For example, check if the password meets certain criteria like length, special characters, and uppercase letters
+            return password.Length >= 8 &&
+                   password.Any(char.IsUpper) &&
+                   password.Any(ch => !char.IsLetterOrDigit(ch));
+        }
+
         public string RandomNumber()
         {
             Random random = new Random();
