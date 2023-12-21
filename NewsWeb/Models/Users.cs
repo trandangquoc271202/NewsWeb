@@ -1,4 +1,4 @@
-namespace NewsWeb.Models
+﻿namespace NewsWeb.Models
 {
     using System;
     using System.Collections.Generic;
@@ -15,10 +15,12 @@ namespace NewsWeb.Models
 
         [Required]
         [StringLength(40)]
+        [EmailAddress(ErrorMessage = "Email không hợp lệ.")]
         public string email { get; set; }
 
         [Required]
-        [StringLength(40)]
+        [StringLength(40, MinimumLength = 8, ErrorMessage = "Mật khẩu phải chứa ít nhất 8 ký tự.")]
+        [RegularExpression(@"^(?=.*[!@#$%^&*])(?=.*[A-Z]).*$", ErrorMessage = "Mật khẩu phải chứa ít nhất một ký tự đặc biệt và một chữ cái hoa.")]
         public string password { get; set; }
 
         [Required]
@@ -27,13 +29,14 @@ namespace NewsWeb.Models
 
         public bool status { get; set; }
 
-        [StringLength(20)]
+        [StringLength(20, ErrorMessage = "Số điện thoại không được vượt quá 20 ký tự.")]
         public string phone { get; set; }
+
 
         [StringLength(40)]
         public string address { get; set; }
 
-        [StringLength(40)]
+        [RegularExpression(@"^\d{2}/\d{2}/\d{4}$", ErrorMessage = "Ngày sinh không hợp lệ.")]
         public string birthDay { get; set; }
     }
 }
