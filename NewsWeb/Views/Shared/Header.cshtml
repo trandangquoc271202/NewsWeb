@@ -158,10 +158,10 @@
 
         <!-- ======= Search Form ======= -->
         <div class="search-form-wrap js-search-form-wrap">
-            <form action="search-result.html" class="search-form">
-                <span class="icon bi-search"></span>
-                <input type="text" placeholder="Search" class="form-control">
-                <button class="btn js-search-close"><span class="bi-x"></span></button>
+            <form action="/Search/Search" class="search-form" method="post">
+                <button type="submit" style="border:hidden"><span class="icon bi-search" style="margin-top:24px"></span></button>
+                <input type="text" placeholder="Search" class="form-control" name="title" style="margin-right:36px">
+                <button class="btn js-search-close" style="margin-top:25px"><span class="bi-x"></span></button>
             </form>
         </div><!-- End Search Form -->
 
