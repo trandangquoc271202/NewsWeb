@@ -154,6 +154,7 @@
     </Compile>
     <Compile Include="Models\Contacts.cs" />
     <Compile Include="Models\DetailComment.cs" />
+    <Compile Include="Models\ItemSearch.cs" />
     <Compile Include="Models\MigrationsConfiguration.cs" />
     <Compile Include="Models\Model1.cs" />
     <Compile Include="Models\Comment.cs" />

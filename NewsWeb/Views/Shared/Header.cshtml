@@ -95,7 +95,69 @@
         font-weight: bold;
         margin-right: 10px;
     }
+
+    .item-search {
+        background-color: #808080;
+        width: 300px;
+        border-radius: 2px;
+        color: white
+    }
+
+    /* CSS để tùy chỉnh danh sách kết quả */
+    #search-results {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+    }
+
+    .item-search {
+        border: 1px solid #ccc;
+        margin-bottom: 5px;
+        padding: 10px;
+    }
+
+    .item-search a {
+        text-decoration: none;
+        color: #333;
+    }
+
+    .item-search a:hover {
+        color: #007bff;
+    }
+
 </style>
+<!-- Thêm thư viện jQuery và jQuery UI -->
+<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+
+<script>
+    $(document).ready(function () {
+        // Chọn thanh input cần thêm autocomplete
+        $("#searchinput").autocomplete({
+            source: function (request, response) {
+                $.ajax({
+                    url: "/Search/AutoComplete", // Điều chỉnh đường dẫn tùy thuộc vào cấu trúc route của bạn
+                    type: "GET",
+                    dataType: "json",
+                    data: { term: request.term },
+                    success: function (data) {
+                        // Giới hạn số lượng kết quả hiển thị tối đa là 5
+                        var slicedData = data.slice(0, 5);
+                        response(slicedData);
+
+                         // Hiển thị danh sách kết quả dưới thanh tìm kiếm
+                        $("#search-results").empty(); // Xóa nội dung trước đó
+                        $.each(slicedData, function (index, item) {
+                            var link = "<a href='/Detail/Detail?id=" + item.link + "'>" + item.title + "</a>";
+                            $("#search-results").append("<div class='item-search'>" + link + "</div>");
+                        });
+                    }
+                });
+            },
+            minLength: 0
+        });
+    });
+</script>
 <header id="header" class="header d-flex align-items-center fixed-top">
     <div class="container-fluid container-xl d-flex align-items-center justify-content-between">
 
@@ -161,7 +223,8 @@
         <div class="search-form-wrap js-search-form-wrap">
             <form action="/Search/Search" class="search-form" method="post">
                 <button type="submit" style="border:hidden"><span class="icon bi-search" style="margin-top:24px"></span></button>
-                <input type="text" placeholder="Search" class="form-control" name="title" style="margin-right:36px">
+                <input id="searchinput" type="text" placeholder="Search" class="form-control" name="title" style="margin-right:36px">
+                <div id="search-results"></div>
                 <button class="btn js-search-close" style="margin-top:25px"><span class="bi-x"></span></button>
             </form>
         </div><!-- End Search Form -->
@@ -171,5 +234,3 @@
     </div>
 
 </header>
-
-
