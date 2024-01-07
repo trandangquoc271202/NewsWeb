@@ -95,11 +95,127 @@
         font-weight: bold;
         margin-right: 10px;
     }
+
+    .item-search {
+        background-color: #808080;
+        width: 300px;
+        border-radius: 2px;
+        color: white
+    }
+
+    /* CSS để tùy chỉnh danh sách kết quả */
+    #search-results {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+    }
+
+    .item-search {
+        border: 1px solid #ccc;
+        margin-bottom: 5px;
+        padding: 10px;
+    }
+
+    .item-search a {
+        text-decoration: none;
+        color: #333;
+    }
+
+    .item-search a:hover {
+        color: #007bff;
+    }
+
+    #voice-search-btn {
+        border: none;
+        float: right;
+        margin-top: -28px;
+    }
+
+    #voice-search-btn:hover {
+        background-color: #58686b; /* Màu nền khi hover qua nút */
+    }
+
+
 </style>
+<!-- Thêm thư viện jQuery và jQuery UI -->
+<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+
+<script>
+    $(document).ready(function () {
+        // Chọn thanh input cần thêm autocomplete
+        $("#searchinput").autocomplete({
+            source: function (request, response) {
+                $.ajax({
+                    url: "/Search/AutoComplete", // Điều chỉnh đường dẫn tùy thuộc vào cấu trúc route của bạn
+                    type: "GET",
+                    dataType: "json",
+                    data: { term: request.term },
+                    success: function (data) {
+                        // Giới hạn số lượng kết quả hiển thị tối đa là 5
+                        var slicedData = data.slice(0, 5);
+                        response(slicedData);
+
+                         // Hiển thị danh sách kết quả dưới thanh tìm kiếm
+                        $("#search-results").empty(); // Xóa nội dung trước đó
+                        $.each(slicedData, function (index, item) {
+                            var link = "<a href='/Detail/Detail?id=" + item.link + "'>" + item.title + "</a>";
+                            $("#search-results").append("<div class='item-search'>" + link + "</div>");
+                        });
+                    }
+                });
+            },
+            minLength: 0
+        });
+    });
+
+    $(document).ready(function () {
+    // Khi nút giọng nói được click
+    $("#voice-search-btn").on("click", function () {
+        startSpeechRecognition();
+    });
+});
+
+function startSpeechRecognition() {
+    // Kiểm tra xem trình duyệt có hỗ trợ API nhận dạng giọng nói hay không
+    if ('webkitSpeechRecognition' in window) {
+        var recognition = new webkitSpeechRecognition();
+
+        // Thiết lập các tùy chọn nhận dạng giọng nói
+        recognition.continuous = false;
+        recognition.interimResults = false;
+
+        // Bắt đầu nhận dạng giọng nói
+        recognition.start();
+
+        // Sự kiện được kích hoạt khi kết quả nhận dạng giọng nói sẵn sàng
+        recognition.onresult = function (event) {
+            var result = event.results[0][0].transcript;
+            
+            // Hiển thị kết quả lên thanh tìm kiếm
+            $("#searchinput").val(result);
+
+            // Kích hoạt nút submit của form
+            $("#search-form").submit();
+        };
+
+        // Sự kiện được kích hoạt khi kết thúc nhận dạng giọng nói
+        recognition.onend = function () {
+            // Dừng quá trình nhận dạng giọng nói
+            recognition.stop();
+        };
+    } else {
+        // Trình duyệt không hỗ trợ API nhận dạng giọng nói
+        alert("Trình duyệt của bạn không hỗ trợ nhận dạng giọng nói.");
+    }
+}
+
+
+</script>
 <header id="header" class="header d-flex align-items-center fixed-top">
     <div class="container-fluid container-xl d-flex align-items-center justify-content-between">
 
-        <a href="index.html" class="logo d-flex align-items-center">
+        <a href="/Home/Index" class="logo d-flex align-items-center">
             <!-- Uncomment the line below if you also wish to use an image logo -->
             <!-- <img src="assets/img/logo.png" alt=""> -->
             <h1>BaoMiTi</h1>
@@ -126,7 +242,8 @@
                 </li>
 
                 <li><a href="about.html">Thông tin</a></li>
-                <li><a href="contact.html">Liên hệ</a></li>
+                <li><a href="/Contact/Contact">Liên hệ</a></li>
+                <li><a href="/Contact/ContactManager">Quản lý Liên hệ</a></li>
             </ul>
         </nav><!-- .navbar -->
         @if (loggedInUser != null)
@@ -158,11 +275,13 @@
 
         <!-- ======= Search Form ======= -->
         <div class="search-form-wrap js-search-form-wrap">
-            <form action="search-result.html" class="search-form">
-                <span class="icon bi-search"></span>
-                <input type="text" placeholder="Search" class="form-control">
-                <button class="btn js-search-close"><span class="bi-x"></span></button>
+            <form action="/Search/Search" class="search-form" id="search-form" method="post" style="width:306px; margin-right:30px">
+                <button type="submit" style="border:hidden"><span class="icon bi-search" style="margin-top:24px"></span></button>
+                <input id="searchinput" type="text" placeholder="Search" class="form-control" name="title" style="margin-right:36px">
+                <div id="search-results"></div>
+                <button class="btn js-search-close" style="margin-top:25px"><span class="bi-x"></span></button>
             </form>
+            <button id="voice-search-btn"><i class="bi bi-mic"></i></button>
         </div><!-- End Search Form -->
 
     </div>
@@ -170,5 +289,3 @@
     </div>
 
 </header>
-
-
