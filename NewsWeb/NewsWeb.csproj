@@ -15,7 +15,7 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>NewsWeb</RootNamespace>
     <AssemblyName>NewsWeb</AssemblyName>
-    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <MvcBuildViews>false</MvcBuildViews>
     <UseIISExpress>true</UseIISExpress>
     <Use64BitIISExpress />
@@ -148,9 +148,9 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\202312281834541_AddContacts.cs" />
-    <Compile Include="Migrations\202312281834541_AddContacts.designer.cs">
-      <DependentUpon>202312281834541_AddContacts.cs</DependentUpon>
+    <Compile Include="Migrations\202401071535478_Dbinit.cs" />
+    <Compile Include="Migrations\202401071535478_Dbinit.designer.cs">
+      <DependentUpon>202401071535478_Dbinit.cs</DependentUpon>
     </Compile>
     <Compile Include="Models\Contacts.cs" />
     <Compile Include="Models\DetailComment.cs" />
@@ -680,11 +680,6 @@
     <Content Include="Scripts\jquery-3.3.1.min.map" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\202312281834541_AddContacts.resx">
-      <DependentUpon>202312281834541_AddContacts.cs</DependentUpon>
-    </EmbeddedResource>
-  </ItemGroup>
-  <ItemGroup>
     <TypeScriptCompile Include="Content\assets1\assets\vendor\chart.js\controllers\controller.bar.d.ts" />
     <TypeScriptCompile Include="Content\assets1\assets\vendor\chart.js\controllers\controller.bubble.d.ts" />
     <TypeScriptCompile Include="Content\assets1\assets\vendor\chart.js\controllers\controller.doughnut.d.ts" />
@@ -781,6 +776,11 @@
   </ItemGroup>
   <ItemGroup>
     <Service Include="{4A0DDDB5-7A95-4FBF-97CC-616D07737A77}" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\202401071535478_Dbinit.resx">
+      <DependentUpon>202401071535478_Dbinit.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
