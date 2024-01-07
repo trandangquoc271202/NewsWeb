@@ -46,9 +46,45 @@ namespace NewsWeb.Controllers
             ViewBag.ContentObject = (object)content;
             ViewBag.link = url;
             ViewBag.ItemList = result;
+            ViewBag.ContentText = getContentText(content);
             return View();
         }
 
+        public string getContentText(string content)
+        {
+            string result = "";
+            string htmlContent = @"" + content;
+
+            // Sử dụng HtmlAgilityPack để phân tích cú pháp HTML
+            HtmlDocument htmlDocument = new HtmlDocument();
+            htmlDocument.LoadHtml(htmlContent);
+
+            // Lấy tất cả các thẻ <p>
+            HtmlNodeCollection paragraphs = htmlDocument.DocumentNode.SelectNodes("//h1");
+            if (paragraphs != null)
+            {
+                // Lấy nội dung của thẻ <h1>
+                foreach (HtmlNode paragraph in paragraphs)
+                {
+                    string paragraphContent = paragraph.InnerText;
+                    result += paragraphContent;
+
+                }
+            }
+            paragraphs = htmlDocument.DocumentNode.SelectNodes("//p");
+            // Kiểm tra xem có thẻ <p> hay không
+            if (paragraphs != null)
+            {
+                // Lặp qua từng thẻ và in ra nội dung
+                foreach (HtmlNode paragraph in paragraphs)
+                {
+                    string paragraphContent = paragraph.InnerText;
+                    result += paragraphContent;
+                   
+                }
+            }
+            return result;
+        } 
         [HttpPost]
         public ActionResult Comment(FormCollection form)
         {

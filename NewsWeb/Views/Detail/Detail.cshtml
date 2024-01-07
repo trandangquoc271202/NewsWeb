@@ -59,11 +59,16 @@
     @Html.Partial("Header")<!-- End Header -->
 
     <main id="main">
-
+        
         <section class="single-post-content">
             <div class="container">
+
                 <div class="row">
+
                     <div class="col-md-9 post-content" data-aos="fade-up">
+                        <input id="textToSpeak" rows="4" cols="50" placeholder="Nhập văn bản cần nói" type="hidden" value="@ViewBag.ContentText"></input>
+                        <select id="voiceSelect"></select>
+                        <span style="cursor: pointer" onclick="speakText()" class="bi-volume-up"></span>
                         @{
                             var contentObject = ViewBag.ContentObject as object;
                             var link = ViewBag.link as string;
@@ -139,6 +144,43 @@
                         </div><!-- End Comments -->
 
 
+                        <script>
+                            function populateVoiceList() {
+                                var voices = window.speechSynthesis.getVoices();
+                                var voiceSelect = document.getElementById('voiceSelect');
+
+                                voices.forEach(function (voice) {
+                                    if (voice.lang.startsWith('vi')) {
+                                        var option = document.createElement('option');
+                                        option.textContent = voice.name + ' (' + voice.lang + ')';
+                                        option.value = voice.name;
+                                        voiceSelect.appendChild(option);
+                                    }
+                                });
+                            }
+
+                            function speakText() {
+                                var textToSpeak = document.getElementById("textToSpeak").value;
+
+                                var synth = window.speechSynthesis;
+                                var utterance = new SpeechSynthesisUtterance(textToSpeak);
+
+                                // Lấy giọng được chọn từ dropdown
+                                var selectedVoice = document.getElementById('voiceSelect').value;
+                                var voices = synth.getVoices();
+                                var voice = voices.find(v => v.name === selectedVoice);
+
+                                // Thiết lập giọng cho utterance
+                                if (voice) {
+                                    utterance.voice = voice;
+                                }
+
+                                synth.speak(utterance);
+                            }
+
+                            // Sự kiện xảy ra khi danh sách giọng được cập nhật
+                            window.speechSynthesis.onvoiceschanged = populateVoiceList;
+                        </script>
 
 
                     </div>
