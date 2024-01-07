@@ -7,13 +7,13 @@ namespace NewsWeb.Models
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.4.4")]
-    public sealed partial class AddContacts : IMigrationMetadata
+    public sealed partial class Dbinit : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(AddContacts));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(Dbinit));
         
         string IMigrationMetadata.Id
         {
-            get { return "202312281834541_AddContacts"; }
+            get { return "202401071535478_Dbinit"; }
         }
         
         string IMigrationMetadata.Source

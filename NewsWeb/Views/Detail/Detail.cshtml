@@ -75,6 +75,14 @@
 
 
                         <!-- End Single Post Content -->
+
+                        <h5 class="comment-title py-4">Chia sẻ</h5>
+                        <a href="https://www.facebook.com/sharer/sharer.php?kid_directed_site=0&sdk=joey&u=@link" target="_blank"><span class="bi-facebook"></span></a>
+                        <a href="https://twitter.com/intent/tweet?url=@Request.Url.AbsoluteUri" data-size="large" target="_blank"><span class="bi-twitter"></a>
+                        <a href="javascript:;" onclick="window.open('https://mail.google.com/mail/u/0/?view=cm&amp;fs=1&amp;tf=1&amp;su=C%E1%BA%A7u+v%C6%B0%E1%BB%A3t+th%C3%A9p+c%E1%BB%ADa+ng%C3%B5+T%C3%A2n+S%C6%A1n+Nh%E1%BA%A5t+th%C3%A0nh+%27%C4%91i%E1%BB%83m+%C4%91en%27+tai+n%E1%BA%A1n&amp;body=@Request.Url.AbsoluteUri', '_blank')" class="mail" rel="nofollow" title="Mail">
+                            <span class="bi-mailbox2"></span>
+                        </a>
+
                         <!-- ======= Comments Form ======= -->
                         <div class="row justify-content-center mt-5">
 
@@ -97,38 +105,40 @@
                         </div><!-- End Comments Form -->
                         <!-- ======= Comments ======= -->
                         <div class="comments">
-                            <h5 class="comment-title py-4">* Bình luận</h5>
+                            <h5 class="comment-title py-4">@ViewBag.ItemList.Count Bình luận</h5>
                             @foreach (var item in ViewBag.ItemList)
                             {
-                            <div class="comment d-flex mb-4">
-                                <div class="flex-shrink-0">
-                                    <div class="avatar avatar-sm rounded-circle">
-                                        <img class="avatar-img" src="assets/img/person-5.jpg" alt="" class="img-fluid">
+                                <div class="comment d-flex mb-4">
+                                    <div class="flex-shrink-0">
+                                        <div class="avatar avatar-sm rounded-circle">
+                                            <img class="avatar-img" src="assets/img/person-5.jpg" alt="" class="img-fluid">
+                                        </div>
                                     </div>
-                                </div>
-                                <div class="flex-grow-1 ms-2 ms-sm-3">
-                                    <div class="comment-meta d-flex align-items-baseline">
-                                        <h6 class="me-2">@item.nameUser</h6>
-                                        <span class="text-muted">2d</span>
-                                    </div>
-                                    <div class="comment-body">
-                                        @item.message
-                                    </div>
+                                    <div class="flex-grow-1 ms-2 ms-sm-3">
+                                        <div class="comment-meta d-flex align-items-baseline">
+                                            <h6 class="me-2">@item.nameUser</h6>
+                                            <span class="text-muted">2d</span>
+                                        </div>
+                                        <div class="comment-body">
+                                            @item.message
+                                        </div>
 
 
-                                </div>
-                                @if (loggedInUser.id == item.idUser)
-                                {
-                                <form action="/Detail/RemoveComment" method="post">
-                                    <input type="hidden" name="link" value="@link">
-                                    <input type="hidden" name="id" value="@item.id">
-                                    <button type="submit"><span class="icon bi-x"></span></button>
-                                </form>
-                                 }
+                                    </div>
+                                    @if (loggedInUser.id == item.idUser)
+                                    {
+                                        <form action="/Detail/RemoveComment" method="post">
+                                            <input type="hidden" name="link" value="@link">
+                                            <input type="hidden" name="id" value="@item.id">
+                                            <button type="submit"><span class="icon bi-x"></span></button>
+                                        </form>
+                                    }
 
                                 </div>
                             }
                         </div><!-- End Comments -->
+
+
 
 
                     </div>
