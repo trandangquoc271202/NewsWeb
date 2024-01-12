@@ -15,7 +15,7 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>NewsWeb</RootNamespace>
     <AssemblyName>NewsWeb</AssemblyName>
-    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
     <MvcBuildViews>false</MvcBuildViews>
     <UseIISExpress>true</UseIISExpress>
     <Use64BitIISExpress />
@@ -136,6 +136,8 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Areas\Admin\AdminAreaRegistration.cs" />
+    <Compile Include="Areas\Admin\Controllers\HomeController.cs" />
     <Compile Include="Controllers\CategoryController.cs" />
     <Compile Include="Controllers\ContactController.cs" />
     <Compile Include="Controllers\DetailController.cs" />
@@ -151,6 +153,10 @@
     <Compile Include="Migrations\202401071535478_Dbinit.cs" />
     <Compile Include="Migrations\202401071535478_Dbinit.designer.cs">
       <DependentUpon>202401071535478_Dbinit.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202401121340137_DbIni.cs" />
+    <Compile Include="Migrations\202401121340137_DbIni.designer.cs">
+      <DependentUpon>202401121340137_DbIni.cs</DependentUpon>
     </Compile>
     <Compile Include="Models\Contacts.cs" />
     <Compile Include="Models\DetailComment.cs" />
@@ -617,6 +623,8 @@
     <Content Include="Content\assets1\assets\vendor\tinymce\composer.json" />
     <Content Include="Content\assets1\assets\vendor\tinymce\package.json" />
     <Content Include="Content\assets1\assets\vendor\tinymce\README.md" />
+    <Content Include="Areas\Admin\Views\web.config" />
+    <Content Include="Areas\Admin\Views\Home\Index.cshtml" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.3.1.js" />
     <Content Include="Scripts\jquery-3.3.1.min.js" />
@@ -665,6 +673,8 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Areas\Admin\Data\" />
+    <Folder Include="Areas\Admin\Views\Shared\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
@@ -780,6 +790,9 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\202401071535478_Dbinit.resx">
       <DependentUpon>202401071535478_Dbinit.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202401121340137_DbIni.resx">
+      <DependentUpon>202401121340137_DbIni.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
