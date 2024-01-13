@@ -130,7 +130,7 @@
 
 
                                     </div>
-                                    @if (loggedInUser.id == item.idUser)
+                                    @if (loggedInUser!=null && loggedInUser.id == item.idUser)
                                     {
                                         <form action="/Detail/RemoveComment" method="post">
                                             <input type="hidden" name="link" value="@link">

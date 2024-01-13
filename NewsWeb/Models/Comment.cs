@@ -24,5 +24,8 @@ namespace NewsWeb.Models
 
         [Required]
         public DateTime dateTimeComment { get; set; }
+
+        [Required]
+        public bool allow { get; set; }
     }
 }

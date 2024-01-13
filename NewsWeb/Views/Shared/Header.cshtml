@@ -254,6 +254,10 @@ function startSpeechRecognition() {
                     <li><a href="~/InfoUser/InfoUser">Thông tin người dùng</a></li>
                     <li><a href="~/InfoUser/ChangePassword">Thay đổi mật khẩu</a></li>
                     <li><a href="~/Login/Logout">Đăng xuất</a></li>
+                    @if(loggedInUser.permission == "admin")
+                    {
+                    <li><a href="/Admin/AccoutManage/Account">Quản lý</a></li>
+                    }
                 </ul>
             </div>
         }
