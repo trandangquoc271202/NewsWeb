@@ -13,7 +13,7 @@ namespace NewsWeb.Models
         
         string IMigrationMetadata.Id
         {
-            get { return "202401071535478_Dbinit"; }
+            get { return "202401131101371_Dbinit"; }
         }
         
         string IMigrationMetadata.Source
