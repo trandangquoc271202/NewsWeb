@@ -70,11 +70,17 @@
 
                         @model NewsWeb.Models.Users
 
-                        @using (Html.BeginForm("Update", "Teacher", FormMethod.Post, new { @class = "your-form-class", role = "form" }))
+                        @using (Html.BeginForm("Update", "AccoutManage", FormMethod.Post, new { @class = "your-form-class", role = "form" }))
                         {
                             @Html.ValidationSummary(true)
 
-
+                            <div class="row mb-3">
+                                @Html.LabelFor(model => model.id, new { @class = "col-sm-2 col-form-label" })
+                                <div class="col-sm-10">
+                                    @Html.TextBoxFor(model => model.id, new { @class = "form-control", @readonly = "readonly" })
+                                </div>
+                                @Html.ValidationMessageFor(model => model.id, "", new { @class = "text-danger" })
+                            </div>
 
                             <div class="row mb-3">
                                 @Html.LabelFor(model => model.name, new { @class = "col-sm-2 col-form-label" })
@@ -141,21 +147,29 @@
                                 @Html.ValidationMessageFor(model => model.address, "", new { @class = "text-danger" })
                             </div>
 
+                            // <div class="row mb-3">
+                            //  @Html.LabelFor(model => model.birthDay, new { @class = "col-sm-2 control-label" })
+                            //  <div class="col-sm-10">
+                            //     @Html.TextBoxFor(model => model.birthDay, "{0:yyyy-MM-dd}", new { @class = "form-control", type = "date" })
+                            // </div>
+                            //   @Html.ValidationMessageFor(model => model.birthDay, "", new { @class = "text-danger" })
+                            //  </div>
                             <div class="row mb-3">
-                                @Html.LabelFor(model => model.birthDay, new { @class = "col-sm-2 control-label" })
+                                @Html.LabelFor(model => model.birthDay, new { @class = "col-sm-2 col-form-label" })
                                 <div class="col-sm-10">
-                                    @Html.TextBoxFor(model => model.birthDay, "{0:yyyy-MM-dd}", new { @class = "form-control", type = "date" })
+                                    @Html.TextBoxFor(model => model.birthDay, new { @class = "form-control" })
                                 </div>
-                                    @Html.ValidationMessageFor(model => model.birthDay, "", new { @class = "text-danger" })
-                                </div>
+                                @Html.ValidationMessageFor(model => model.birthDay, "", new { @class = "text-danger" })
+                            </div>
+
                             <div class="text-center" style="margin-top: 20px">
                                 <button type="submit" class="btn btn-primary">Submit</button>
-                                <button type="submit" class="btn btn-primary bg-danger">Delete</button>
+                                <a href="/Admin/AccoutManage/Delete?id=@Model.id"> <button type="button" class="btn btn-primary bg-danger">Delete</button> </a>
                             </div>
-                                }
+                        }
 
 
-                            </div>
+                    </div>
                 </div>
 
 
