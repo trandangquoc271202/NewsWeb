@@ -13,19 +13,22 @@ namespace NewsWeb.Areas.Admin.Controllers
         // GET: Admin/AccoutManager
         public ActionResult Account()
         {
-           // var loggedInUser = Session["LoggedInUser"] as NewsWeb.Models.Users;
-            //if (loggedInUser != null && loggedInUser.permission == "admin")
-           // {
+            var loggedInUser = Session["LoggedInUser"] as NewsWeb.Models.Users;
+            if (loggedInUser != null && loggedInUser.permission == "admin")
+            {
                 List<Users> ItemList = db.Users.ToList();
                 ViewBag.ItemList = ItemList;
                 return View();
-            //}
-           // return Redirect("/Login/Login");
+            }
+            return Redirect("/Login/Login");
         }
         [HttpGet]
         public ActionResult Detail()
         {
-            try
+            var loggedInUser = Session["LoggedInUser"] as NewsWeb.Models.Users;
+            if (loggedInUser != null && loggedInUser.permission == "admin")
+            {
+                try
             {
                 int id = int.Parse(Request["id"]);
                 Users user = db.Users.FirstOrDefault(c => c.id == id);
@@ -40,11 +43,16 @@ namespace NewsWeb.Areas.Admin.Controllers
                 return Redirect("/Admin/AccoutManage/Account");
             }
             return View();
+            }
+            return Redirect("/Login/Login");
         }
         public ActionResult Update(Users user)
         {
+            var loggedInUser = Session["LoggedInUser"] as NewsWeb.Models.Users;
+            if (loggedInUser != null && loggedInUser.permission == "admin")
+            {
 
-            if (ModelState.IsValid)
+                if (ModelState.IsValid)
             {
                 Users userUpdate = db.Users.FirstOrDefault(c => c.id == user.id);
                 if (userUpdate != null)
@@ -60,10 +68,15 @@ namespace NewsWeb.Areas.Admin.Controllers
             }
 
             return Redirect("/Admin/AccoutManage/Detail?id=" + user.id);
+            }
+            return Redirect("/Login/Login");
         }
         public ActionResult Delete()
         {
-            int id = int.Parse(Request["id"]);
+            var loggedInUser = Session["LoggedInUser"] as NewsWeb.Models.Users;
+            if (loggedInUser != null && loggedInUser.permission == "admin")
+            {
+                int id = int.Parse(Request["id"]);
             var user = db.Users.FirstOrDefault(u => u.id == id);
             if (user != null)
             {
@@ -72,6 +85,8 @@ namespace NewsWeb.Areas.Admin.Controllers
             }
 
             return Redirect("/Admin/AccoutManage/Account");
+            }
+            return Redirect("/Login/Login");
         }
     }
 }

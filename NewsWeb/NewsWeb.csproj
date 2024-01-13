@@ -159,6 +159,10 @@
     <Compile Include="Migrations\202401131451182_Dbinit1.designer.cs">
       <DependentUpon>202401131451182_Dbinit1.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202401131707010_DbInit2.cs" />
+    <Compile Include="Migrations\202401131707010_DbInit2.designer.cs">
+      <DependentUpon>202401131707010_DbInit2.cs</DependentUpon>
+    </Compile>
     <Compile Include="Models\Contacts.cs" />
     <Compile Include="Models\DetailComment.cs" />
     <Compile Include="Models\ItemSearch.cs" />
@@ -797,6 +801,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202401131451182_Dbinit1.resx">
       <DependentUpon>202401131451182_Dbinit1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202401131707010_DbInit2.resx">
+      <DependentUpon>202401131707010_DbInit2.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

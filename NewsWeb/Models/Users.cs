@@ -17,22 +17,22 @@ namespace NewsWeb.Models
         [StringLength(40)]
         public string name { get; set; }
 
-        [Key]
+        
         [Column(Order = 1)]
         [StringLength(40)]
         public string email { get; set; }
 
-        [Key]
+        
         [Column(Order = 2)]
         [StringLength(40)]
         public string password { get; set; }
 
-        [Key]
+       
         [Column(Order = 3)]
         [StringLength(10)]
         public string permission { get; set; }
 
-        [Key]
+        
         [Column(Order = 4)]
         public bool status { get; set; }
 

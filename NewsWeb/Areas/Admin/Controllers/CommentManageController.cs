@@ -13,19 +13,22 @@ namespace NewsWeb.Areas.Admin.Controllers
         // GET: Admin/AccoutManager
         public ActionResult Comment()
         {
-            // var loggedInUser = Session["LoggedInUser"] as NewsWeb.Models.Users;
-            //if (loggedInUser != null && loggedInUser.permission == "admin")
-            // {
+            var loggedInUser = Session["LoggedInUser"] as NewsWeb.Models.Users;
+            if (loggedInUser != null && loggedInUser.permission == "admin")
+            {
             List<Comment> comments = db.Comments.ToList();
             ViewBag.ItemList = comments;
             return View();
-            //}
-            // return Redirect("/Login/Login");
+            }
+            return Redirect("/Login/Login");
         }
         [HttpGet]
         public ActionResult Detail()
         {
-            try
+            var loggedInUser = Session["LoggedInUser"] as NewsWeb.Models.Users;
+            if (loggedInUser != null && loggedInUser.permission == "admin")
+            {
+                try
             {
                 int id = int.Parse(Request["id"]);
                 Comment comment = db.Comments.FirstOrDefault(c => c.id == id);
@@ -33,17 +36,22 @@ namespace NewsWeb.Areas.Admin.Controllers
                 {
                     return View(comment);
                 }
-            }
+                    return Redirect("/Admin/CommentManage/Comment");
+                }
             catch (Exception e)
             {
-
-            }
+                    return Redirect("/Admin/CommentManage/Comment");
+                }
             return View();
+            }
+            return Redirect("/Login/Login");
         }
         public ActionResult Update(Comment comment)
         {
-
-            if (ModelState.IsValid)
+            var loggedInUser = Session["LoggedInUser"] as NewsWeb.Models.Users;
+            if (loggedInUser != null && loggedInUser.permission == "admin")
+            {
+                if (ModelState.IsValid)
             {
                 Comment commentUpdate = db.Comments.FirstOrDefault(c => c.id == comment.id);
                 if (commentUpdate != null)
@@ -54,10 +62,15 @@ namespace NewsWeb.Areas.Admin.Controllers
             }
 
             return Redirect("/Admin/CommentManage/Detail?id=" + comment.id);
+            }
+            return Redirect("/Login/Login");
         }
         public ActionResult Delete()
         {
-            int id = int.Parse(Request["id"]);
+            var loggedInUser = Session["LoggedInUser"] as NewsWeb.Models.Users;
+            if (loggedInUser != null && loggedInUser.permission == "admin")
+            {
+                int id = int.Parse(Request["id"]);
             var comment = db.Comments.FirstOrDefault(u => u.id == id);
             if (comment != null)
             {
@@ -66,6 +79,8 @@ namespace NewsWeb.Areas.Admin.Controllers
             }
 
             return Redirect("/Admin/CommentManage/Comment");
+            }
+            return Redirect("/Login/Login");
         }
     }
 }
