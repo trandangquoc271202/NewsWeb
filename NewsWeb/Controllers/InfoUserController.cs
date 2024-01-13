@@ -22,6 +22,10 @@ namespace NewsWeb.Controllers
             }
             return RedirectToAction("News", "News");
         }
+        public ActionResult History()
+        {
+            return View();
+        }
 
         public ActionResult ChangeInfo()
         {
@@ -84,6 +88,7 @@ namespace NewsWeb.Controllers
             }
             return RedirectToAction("News", "News");
         }
+        
 
         public ActionResult ConfirmChangePasswordFG(FormCollection form)
         {
@@ -127,7 +132,9 @@ namespace NewsWeb.Controllers
             }
             return View("ChangePassword");
         }
+      
 
     }
+   
 
 }

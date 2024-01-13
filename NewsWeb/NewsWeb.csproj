@@ -15,7 +15,7 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>NewsWeb</RootNamespace>
     <AssemblyName>NewsWeb</AssemblyName>
-    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
     <MvcBuildViews>false</MvcBuildViews>
     <UseIISExpress>true</UseIISExpress>
     <Use64BitIISExpress />
@@ -151,17 +151,9 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\202401131101371_Dbinit.cs" />
-    <Compile Include="Migrations\202401131101371_Dbinit.designer.cs">
-      <DependentUpon>202401131101371_Dbinit.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202401131451182_Dbinit1.cs" />
-    <Compile Include="Migrations\202401131451182_Dbinit1.designer.cs">
-      <DependentUpon>202401131451182_Dbinit1.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202401131707010_DbInit2.cs" />
-    <Compile Include="Migrations\202401131707010_DbInit2.designer.cs">
-      <DependentUpon>202401131707010_DbInit2.cs</DependentUpon>
+    <Compile Include="Migrations\202401131842162_New.cs" />
+    <Compile Include="Migrations\202401131842162_New.designer.cs">
+      <DependentUpon>202401131842162_New.cs</DependentUpon>
     </Compile>
     <Compile Include="Models\Contacts.cs" />
     <Compile Include="Models\DetailComment.cs" />
@@ -679,6 +671,7 @@
     <Content Include="Views\Search\Search.cshtml" />
     <Content Include="Views\Contact\Contact.cshtml" />
     <Content Include="Views\Contact\ContactManager.cshtml" />
+    <Content Include="Views\Contact\Detail.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -796,14 +789,8 @@
     <Service Include="{4A0DDDB5-7A95-4FBF-97CC-616D07737A77}" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\202401131101371_Dbinit.resx">
-      <DependentUpon>202401131101371_Dbinit.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202401131451182_Dbinit1.resx">
-      <DependentUpon>202401131451182_Dbinit1.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202401131707010_DbInit2.resx">
-      <DependentUpon>202401131707010_DbInit2.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\202401131842162_New.resx">
+      <DependentUpon>202401131842162_New.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

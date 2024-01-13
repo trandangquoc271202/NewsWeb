@@ -18,5 +18,6 @@ namespace NewsWeb.Controllers
 
             return View(list);
         }
+      
     }
 }

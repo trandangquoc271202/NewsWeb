@@ -10,7 +10,8 @@ namespace NewsWeb.Models
     {
         public MigrationsConfiguration()
         {
-            AutomaticMigrationsEnabled = false; 
+            AutomaticMigrationsEnabled = true; // Đặt thành true
+            MigrationsDirectory = @"Migrations";
         }
 
         protected override void Seed(Model1 context)
