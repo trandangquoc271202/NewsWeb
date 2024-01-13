@@ -138,6 +138,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Areas\Admin\AdminAreaRegistration.cs" />
     <Compile Include="Areas\Admin\Controllers\AccoutManageController.cs" />
+    <Compile Include="Areas\Admin\Controllers\CommentManageController.cs" />
     <Compile Include="Controllers\CategoryController.cs" />
     <Compile Include="Controllers\ContactController.cs" />
     <Compile Include="Controllers\DetailController.cs" />
@@ -153,6 +154,10 @@
     <Compile Include="Migrations\202401131101371_Dbinit.cs" />
     <Compile Include="Migrations\202401131101371_Dbinit.designer.cs">
       <DependentUpon>202401131101371_Dbinit.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202401131451182_Dbinit1.cs" />
+    <Compile Include="Migrations\202401131451182_Dbinit1.designer.cs">
+      <DependentUpon>202401131451182_Dbinit1.cs</DependentUpon>
     </Compile>
     <Compile Include="Models\Contacts.cs" />
     <Compile Include="Models\DetailComment.cs" />
@@ -623,6 +628,8 @@
     <Content Include="Areas\Admin\Views\Shared\Header.cshtml" />
     <Content Include="Areas\Admin\Views\AccoutManage\Account.cshtml" />
     <Content Include="Areas\Admin\Views\AccoutManage\Detail.cshtml" />
+    <Content Include="Areas\Admin\Views\CommentManage\Comment.cshtml" />
+    <Content Include="Areas\Admin\Views\CommentManage\Detail.cshtml" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.3.1.js" />
     <Content Include="Scripts\jquery-3.3.1.min.js" />
@@ -672,7 +679,6 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Areas\Admin\Data\" />
-    <Folder Include="Areas\Admin\Views\AccoutManager\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
@@ -788,6 +794,9 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\202401131101371_Dbinit.resx">
       <DependentUpon>202401131101371_Dbinit.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202401131451182_Dbinit1.resx">
+      <DependentUpon>202401131451182_Dbinit1.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

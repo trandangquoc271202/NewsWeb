@@ -33,10 +33,11 @@ namespace NewsWeb.Areas.Admin.Controllers
                 {
                     return View(user);
                 }
+                return Redirect("/Admin/AccoutManage/Account");
             }
             catch (Exception e)
             {
-                
+                return Redirect("/Admin/AccoutManage/Account");
             }
             return View();
         }

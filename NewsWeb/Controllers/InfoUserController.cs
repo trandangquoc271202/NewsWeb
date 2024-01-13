@@ -44,7 +44,8 @@ namespace NewsWeb.Controllers
             String birthdate = form["birthdate"];
             if (loggedInUser != null)
             {
-                Users userToUpdate = db.Users.Find(loggedInUser.id);
+                Users userToUpdate = db.Users.FirstOrDefault(c => c.id == loggedInUser.id);
+
                 if (userToUpdate != null)
                 {
                     userToUpdate.name = name;

@@ -1250,3 +1250,4 @@ D:\.NET\TranDangQuoc\Admin\NewsWeb\NewsWeb\obj\Debug\NewsWeb.dll
 D:\.NET\TranDangQuoc\Admin\NewsWeb\NewsWeb\obj\Debug\NewsWeb.pdb
 D:\.NET\TranDangQuoc\Admin\NewsWeb\NewsWeb\obj\Debug\NewsWeb.Models.Dbinit.resources
 D:\.NET\TranDangQuoc\Admin\NewsWeb\NewsWeb\obj\Debug\NewsWeb.csproj.GenerateResource.cache
+D:\.NET\TranDangQuoc\Admin\NewsWeb\NewsWeb\obj\Debug\NewsWeb.Models.Dbinit1.resources

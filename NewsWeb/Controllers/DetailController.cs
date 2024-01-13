@@ -30,7 +30,7 @@ namespace NewsWeb.Controllers
 
             var query = from comment in db.Comments
                         join user in db.Users on comment.idUser equals user.id
-                        where comment.link == url
+                        where comment.link == url && comment.allow == true
                         orderby comment.dateTimeComment descending
                         select new DetailComment
                         {
@@ -98,7 +98,8 @@ namespace NewsWeb.Controllers
                 idUser = user.id,
                 link = url,
                  message = comment,
-                    dateTimeComment = DateTime.Now
+                    dateTimeComment = DateTime.Now,
+                allow = true
                 };
                 db.Comments.Add(commentNews);
                 db.SaveChanges();
