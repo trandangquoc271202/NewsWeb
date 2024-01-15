@@ -34,7 +34,7 @@ namespace NewsWeb.Controllers
                 if (user.permission.Trim() == "admin")
                 {
 
-                    return RedirectToAction("HomeAdmin", "HomeAdmin");
+                    return RedirectToAction("Index", "Home", new { area = "Admin" });
                 }
                 else
                 {

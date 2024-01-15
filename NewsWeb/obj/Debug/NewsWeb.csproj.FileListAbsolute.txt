@@ -1060,10 +1060,7 @@ G:\HocTap\NewsApp\NewsWeb\bin\Newtonsoft.Json.xml
 G:\HocTap\NewsApp\NewsWeb\bin\Antlr3.Runtime.pdb
 G:\HocTap\NewsApp\NewsWeb\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
 G:\HocTap\NewsApp\NewsWeb\obj\Debug\NewsWeb.csproj.AssemblyReference.cache
-G:\HocTap\NewsApp\NewsWeb\obj\Debug\NewsWeb.Models.Dbinit.resources
-G:\HocTap\NewsApp\NewsWeb\obj\Debug\NewsWeb.csproj.GenerateResource.cache
 G:\HocTap\NewsApp\NewsWeb\obj\Debug\NewsWeb.csproj.CoreCompileInputs.cache
 G:\HocTap\NewsApp\NewsWeb\obj\Debug\NewsWeb.csproj.CopyComplete
 G:\HocTap\NewsApp\NewsWeb\obj\Debug\NewsWeb.dll
 G:\HocTap\NewsApp\NewsWeb\obj\Debug\NewsWeb.pdb
-G:\HocTap\NewsApp\NewsWeb\obj\Debug\NewsWeb.Models.DbIni.resources

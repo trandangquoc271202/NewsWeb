@@ -126,6 +126,15 @@ namespace NewsWeb.Controllers
             }
             return View("ChangePassword");
         }
+        public ActionResult History()
+        {
+            return View();
+
+        }
+        public ActionResult Hobby()
+        {
+            return View();
+        }
 
     }
 
