@@ -151,12 +151,13 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\202401131842162_New.cs" />
-    <Compile Include="Migrations\202401131842162_New.designer.cs">
-      <DependentUpon>202401131842162_New.cs</DependentUpon>
+    <Compile Include="Migrations\202401160300100_DbInit.cs" />
+    <Compile Include="Migrations\202401160300100_DbInit.designer.cs">
+      <DependentUpon>202401160300100_DbInit.cs</DependentUpon>
     </Compile>
     <Compile Include="Models\Contacts.cs" />
     <Compile Include="Models\DetailComment.cs" />
+    <Compile Include="Models\HistoryNews.cs" />
     <Compile Include="Models\ItemSearch.cs" />
     <Compile Include="Models\MigrationsConfiguration.cs" />
     <Compile Include="Models\Model1.cs" />
@@ -672,6 +673,7 @@
     <Content Include="Views\Contact\Contact.cshtml" />
     <Content Include="Views\Contact\ContactManager.cshtml" />
     <Content Include="Views\Contact\Detail.cshtml" />
+    <Content Include="Views\InfoUser\History.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -789,8 +791,8 @@
     <Service Include="{4A0DDDB5-7A95-4FBF-97CC-616D07737A77}" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\202401131842162_New.resx">
-      <DependentUpon>202401131842162_New.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\202401160300100_DbInit.resx">
+      <DependentUpon>202401160300100_DbInit.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

@@ -2,8 +2,10 @@
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
+using System.Net;
 using System.Web;
 using System.Web.Mvc;
+using HtmlAgilityPack;
 using NewsWeb.Models;
 
 namespace NewsWeb.Controllers
@@ -24,9 +26,35 @@ namespace NewsWeb.Controllers
         }
         public ActionResult History()
         {
-            List<HistoryNews> list = db.HistoryNews.ToList();
+            Users loggedInUser = Session["LoggedInUser"] as Users;
+            List<HistoryNews> list = db.HistoryNews
+            .Where(item => item.UserID == loggedInUser.id)
+            .OrderBy(item => item.Time)
+            .ToList();
+            list = list.OrderByDescending(item => item.Time).ToList();
 
-            return View();
+            foreach (var item in list)
+            {
+                string htmlContent;
+                using (WebClient webClient = new WebClient())
+                {
+                    htmlContent = webClient.DownloadString(item.Link);
+                }
+
+                HtmlDocument doc = new HtmlDocument();
+                doc.LoadHtml(htmlContent);
+
+                // Sử dụng XPath để chọn phần tử h1 có class là 'title-detail'
+                HtmlNode detailNode = doc.DocumentNode.SelectSingleNode("//h1[contains(@class, 'title-detail')]");
+
+                // Lấy nội dung của phần tử h1 (innerText)
+                string detail = detailNode?.InnerText;
+
+                // Gán nội dung đã lấy vào thuộc tính Link của đối tượng HistoryNews
+                item.Link = detail;
+            }
+
+            return View(list);
         }
 
         public ActionResult ChangeInfo()
