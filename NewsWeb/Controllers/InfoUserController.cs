@@ -24,6 +24,8 @@ namespace NewsWeb.Controllers
         }
         public ActionResult History()
         {
+            List<HistoryNews> list = db.HistoryNews.ToList();
+
             return View();
         }
 

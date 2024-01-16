@@ -1,6 +1,10 @@
 {
   "ExpandedNodes": [
-    ""
+    "",
+    "\\NewsWeb",
+    "\\NewsWeb\\Migrations",
+    "\\NewsWeb\\Views",
+    "\\NewsWeb\\Views\\Contact"
   ],
   "SelectedNode": "\\NewsWeb.sln",
   "PreviewInSolutionExplorer": false
