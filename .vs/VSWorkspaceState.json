@@ -2,10 +2,8 @@
   "ExpandedNodes": [
     "",
     "\\NewsWeb",
-    "\\NewsWeb\\Migrations",
-    "\\NewsWeb\\Views",
-    "\\NewsWeb\\Views\\Contact"
+    "\\NewsWeb\\Controllers"
   ],
-  "SelectedNode": "\\NewsWeb.sln",
+  "SelectedNode": "\\NewsWeb\\Controllers\\InfoUserController.cs",
   "PreviewInSolutionExplorer": false
 }
