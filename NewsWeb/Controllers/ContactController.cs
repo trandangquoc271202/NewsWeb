@@ -44,8 +44,14 @@ namespace NewsWeb.Controllers
             int contain = 8;
             int pages = 0;
             // Thực hiện truy vấn để lấy tất cả dữ liệu từ bảng Contacts
-            List<Contacts> contacts = db.Contacts.ToArray().Reverse().ToList();
-            if (contacts.Count % contain == 0)
+            List<Contacts> contacts = new List<Contacts>();
+            contacts = db.Contacts.ToArray().Reverse().ToList();
+            if (contacts.Count == 0)
+            {
+                contain = 0;
+                page = 0;
+            }
+            else if (contacts.Count % contain == 0)
             {
                 pages = contacts.Count / contain;
             }
@@ -119,7 +125,7 @@ namespace NewsWeb.Controllers
         public JsonResult ContactManagerPage(string pagestring)
         {
             int page = 0;
-            if (pagestring == null)
+            if (pagestring == null || pagestring == "0")
             {
                 page = 1;
             }
