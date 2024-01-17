@@ -26,7 +26,7 @@ namespace NewsWeb.Controllers
             };
             db.Contacts.Add(contact);
             db.SaveChanges();
-            return RedirectToAction("Index", "Home");
+            return RedirectToAction("Contact", "Contact");
         }
 
         public ActionResult ContactManager(string pagestring)
