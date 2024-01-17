@@ -1337,8 +1337,6 @@ D:\Visual Studio 2022\pagket\FinalDotNet\Clone5\NewsWeb\NewsWeb\obj\Debug\NewsWe
 D:\Visual Studio 2022\pagket\FinalDotNet\Clone5\NewsWeb\NewsWeb\obj\Debug\NewsWeb.csproj.CopyComplete
 D:\Visual Studio 2022\pagket\FinalDotNet\Clone5\NewsWeb\NewsWeb\obj\Debug\NewsWeb.dll
 D:\Visual Studio 2022\pagket\FinalDotNet\Clone5\NewsWeb\NewsWeb\obj\Debug\NewsWeb.pdb
-D:\Visual Studio 2022\pagket\FinalDotNet\Clone5\NewsWeb\NewsWeb\obj\Debug\NewsWeb.Models.New.resources
-D:\Visual Studio 2022\pagket\FinalDotNet\Clone5\NewsWeb\NewsWeb\obj\Debug\NewsWeb.csproj.GenerateResource.cache
 G:\HocTap\.net\NewsApp\NewsWeb\obj\Debug\NewsWeb.csproj.AssemblyReference.cache
 G:\HocTap\.net\NewsApp\NewsWeb\obj\Debug\NewsWeb.dll
 G:\HocTap\.net\NewsApp\NewsWeb\obj\Debug\NewsWeb.pdb
@@ -1426,3 +1424,5 @@ G:\HocTap\.net\NewsApp\NewsWeb\obj\Debug\NewsWeb.csproj.CoreCompileInputs.cache
 G:\HocTap\.net\NewsApp\NewsWeb\obj\Debug\NewsWeb.csproj.CopyComplete
 G:\HocTap\.net\NewsApp\NewsWeb\obj\Debug\NewsWeb.Models.DbInit.resources
 G:\HocTap\.net\NewsApp\NewsWeb\obj\Debug\NewsWeb.csproj.GenerateResource.cache
+D:\Visual Studio 2022\pagket\FinalDotNet\Clone5\NewsWeb\NewsWeb\obj\Debug\NewsWeb.Models.newdb.resources
+D:\Visual Studio 2022\pagket\FinalDotNet\Clone5\NewsWeb\NewsWeb\obj\Debug\NewsWeb.csproj.GenerateResource.cache

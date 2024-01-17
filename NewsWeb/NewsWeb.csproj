@@ -151,9 +151,9 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\202401160300100_DbInit.cs" />
-    <Compile Include="Migrations\202401160300100_DbInit.designer.cs">
-      <DependentUpon>202401160300100_DbInit.cs</DependentUpon>
+    <Compile Include="Migrations\202401171357446_newdb.cs" />
+    <Compile Include="Migrations\202401171357446_newdb.designer.cs">
+      <DependentUpon>202401171357446_newdb.cs</DependentUpon>
     </Compile>
     <Compile Include="Models\Contacts.cs" />
     <Compile Include="Models\DetailComment.cs" />
@@ -791,8 +791,8 @@
     <Service Include="{4A0DDDB5-7A95-4FBF-97CC-616D07737A77}" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\202401160300100_DbInit.resx">
-      <DependentUpon>202401160300100_DbInit.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\202401171357446_newdb.resx">
+      <DependentUpon>202401171357446_newdb.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
