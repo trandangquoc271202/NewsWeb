@@ -27,10 +27,22 @@ namespace NewsWeb.Controllers
             {
                 content = sidebarNode.InnerHtml.Replace("data-src", "src");
             }
-
+            var loggedInUser = Session["LoggedInUser"] as NewsWeb.Models.Users;
+            if(loggedInUser != null)
+            {
+                HistoryNews his = new HistoryNews
+                {
+                    UserID = loggedInUser.id,
+                    Link = url,
+                    Time = DateTime.Now,
+                  
+                };
+                db.HistoryNews.Add(his);
+                db.SaveChanges();
+            }
             var query = from comment in db.Comments
                         join user in db.Users on comment.idUser equals user.id
-                        where comment.link == url
+                        where comment.link == url && comment.allow == true
                         orderby comment.dateTimeComment descending
                         select new DetailComment
                         {
@@ -98,7 +110,8 @@ namespace NewsWeb.Controllers
                 idUser = user.id,
                 link = url,
                  message = comment,
-                    dateTimeComment = DateTime.Now
+                    dateTimeComment = DateTime.Now,
+                allow = true
                 };
                 db.Comments.Add(commentNews);
                 db.SaveChanges();

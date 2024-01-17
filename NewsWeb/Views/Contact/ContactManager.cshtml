@@ -33,6 +33,7 @@
 
     <!-- Template Main CSS File -->
     <link href="/Content/assets1/assets/css/style.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
 
     <!-- =======================================================
     * Template Name: NiceAdmin
@@ -41,6 +42,35 @@
     * Author: BootstrapMade.com
     * License: https://bootstrapmade.com/license/
     ======================================================== -->
+    <style>
+    /* CSS để tùy chỉnh biểu tượng xóa */
+    .delete-icon {
+        color: red; /* Màu của biểu tượng xóa */
+        cursor: pointer; /* Thay đổi con trỏ khi di chuột vào */
+    }
+
+    .pagination {
+        display: inline-block;
+    }
+
+    .pagination button {
+      color: black;
+      float: left;
+      padding: 1px 11px;
+      text-decoration: none;
+      transition: background-color .3s;
+      border: 1px solid #ddd;
+      font-size: 22px;
+    }
+
+    .pagination button.active {
+      background-color: #4CAF50;
+      color: white;
+      border: 1px solid #4CAF50;
+    }
+
+    .pagination a:hover:not(.active) {background-color: #ddd;}
+    </style>
 </head>
 
 <body>
@@ -524,30 +554,41 @@
         </div><!-- End Page Title -->
 
         <section class="section contact">
-
+            
+            <div id="contactList">
             <table class="table">
                 <thead>
                     <tr>
+                        <th>Id</th>
                         <th>Name</th>
                         <th>Email</th>
                         <th>Subject</th>
-                        <th>Message</th>
+                        <th></th>
                     </tr>
                 </thead>
                 <tbody>
-
-                    @foreach (var item in ViewBag.ContactList)
-                    {
-                    <tr>
-                        <td>@item.name</td>
-                        <td>@item.email</td>
-                        <td>@item.subject</td>
-                        <td>@item.message</td>
-                    </tr>
-                    }
-
+                        @foreach (var item in ViewBag.ContactList)
+                        {
+                        <tr id="contact_@item.id">
+                            <td><a href="/Contact/Detail?id=@item.id" style="color:black">@item.id</a></td>
+                            <td><a href="/Contact/Detail?id=@item.id" style="color:black">@item.name</a></td>
+                            <td><a href="/Contact/Detail?id=@item.id" style="color:black">@item.email</a></td>
+                            <td><a href="/Contact/Detail?id=@item.id" style="color:black">@item.subject</a></td>
+                            <td><i class="fas fa-trash delete-icon" onclick="confirmDelete(@item.id)"></i></td>
+                        </tr>
+                        }
+                      
                 </tbody>
-            </table>
+            </table></div>
+            <div class="pagination" id="pagination">
+                @for (int i = 1; i < ViewBag.page; i++) {
+                        <button class="page-btn" onclick="loadContacts(@i)">@i</button>
+                }
+                <button class="page-btn active" onclick="loadContacts(@ViewBag.page)">@ViewBag.page</button>
+                @for (int i = ViewBag.page + 1; i <= ViewBag.pages; i++) {
+                     <button class="page-btn" onclick="loadContacts(@i)">@i</button>
+                }
+            </div>
         </section>
 
     </main><!-- End #main -->
@@ -578,6 +619,97 @@
 
     <!-- Template Main JS File -->
     <script src="/Content/assets1/assets/js/main.js"></script>
+    <!-- Thêm thư viện jQuery và jQuery UI -->
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <script>
+    // Hàm xác nhận xóa
+    function confirmDelete(id) {
+        var confirmResult = confirm("Are you sure you want to delete contact id = "+id+" ?");
+        if (confirmResult) {
+            $(document).ready(function () {
+                $.ajax({
+                    url: '/Contact/Delete',
+                    type: 'POST',
+                    data: { id: id },
+                    success: function (result) {
+                        if (result.success) {
+                            // Xóa thành công, thực hiện các bước cần thiết (ví dụ: cập nhật UI)
+                            alert(result.message);
+                            // Thực hiện làm mới trang hoặc cập nhật giao diện người dùng khác
+                            // Xóa phần tử HTML của liên hệ đã bị xóa
+                            $("#contact_" + id).remove();
+                            loadContacts(parseInt($('.page-btn.active').text(), 10));
+                        } else {
+                            // Hiển thị thông báo lỗi
+                            alert(result.message);
+                        }
+                    },
+                    error: function (error) {
+                        // Hiển thị thông báo lỗi nếu có lỗi trong quá trình gọi Ajax
+                        alert("Error deleting contact. " + error.statusText);
+                    }
+                });
+            });
+        }
+    }
+
+         
+        // Hàm để load danh sách contact và phân trang
+        function loadContacts(page) {
+                $(document).ready(function () {
+                    $.ajax({
+                        url: '/Contact/ContactManagerPage',
+                        type: 'POST',
+                        data: { pagestring: page },
+                        success: function (result) {
+                            // Cập nhật danh sách contact
+                            var contactList = $('#contactList');
+                            contactList.find('tbody').empty(); // Điều này sẽ xóa tất cả các dòng từ tbody
+                             $.each(result.list, function (index, contact) {
+                            var rowHtml = '<tr id="contact_' + contact.id + '">' +
+                                '<td><a href="/Contact/Detail?id=' + contact.id + '" style="color:black">' + contact.id + '</a></td>' +
+                                '<td><a href="/Contact/Detail?id=' + contact.id + '" style="color:black">' + contact.name + '</a></td>' +
+                                '<td><a href="/Contact/Detail?id=' + contact.id + '" style="color:black">' + contact.email + '</a></td>' +
+                                '<td><a href="/Contact/Detail?id=' + contact.id + '" style="color:black">' + contact.subject + '</a></td>' +
+                                '<td><i class="fas fa-trash delete-icon" onclick="confirmDelete(' + contact.id + ')"></i></td>' +
+                                '</tr>';
+                            contactList.find('table').append(rowHtml);
+                            });
+                            if(result.current == result.total){
+                                console.log(true);
+                                var extra = 8 - result.list.length;
+                                console.log(extra);
+                                for (var i = 1; i <= extra; i++) {
+                                    var rowHtml = '<tr>' +
+                                            '<td style="color:white; border-bottom: none;">1</td>' +
+                                            '<td style="color:white; border-bottom: none;"></td>' +
+                                            '<td style="color:white; border-bottom: none;"></td>' +
+                                            '<td style="color:white; border-bottom: none;"></td>' +
+                                            '<td style="color:white; border-bottom: none;"></td>' +
+                                            '</tr>';
+                                    contactList.find('table').append(rowHtml);
+                                }
+                            }
+                            
+                            var pagination = $('#pagination');
+                            pagination.find('.page-btn').remove(); // Xóa tất cả các nút phân trang cũ
+
+                            // Thêm nút phân trang mới
+                            for (var i = 1; i <= result.total; i++) {
+                                var btnClass = (i === result.current) ? 'page-btn active' : 'page-btn';
+                                var button = '<button class="' + btnClass + '" onclick="loadContacts(' + i + ')">' + i + '</button>';
+                                pagination.append(button);
+                            }
+                        },
+                        error: function (error) {
+                            console.log("Error loading contacts. " + error.statusText);
+                        }
+                    });
+        
+            });
+        }
+    </script>
 
 </body>
 

@@ -2,8 +2,10 @@
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
+using System.Net;
 using System.Web;
 using System.Web.Mvc;
+using HtmlAgilityPack;
 using NewsWeb.Models;
 
 namespace NewsWeb.Controllers
@@ -21,6 +23,38 @@ namespace NewsWeb.Controllers
                 return View();
             }
             return RedirectToAction("News", "News");
+        }
+        public ActionResult History()
+        {
+            Users loggedInUser = Session["LoggedInUser"] as Users;
+            List<HistoryNews> list = db.HistoryNews
+            .Where(item => item.UserID == loggedInUser.id)
+            .OrderBy(item => item.Time)
+            .ToList();
+            list = list.OrderByDescending(item => item.Time).ToList();
+
+            foreach (var item in list)
+            {
+                string htmlContent;
+                using (WebClient webClient = new WebClient())
+                {
+                    htmlContent = webClient.DownloadString(item.Link);
+                }
+
+                HtmlDocument doc = new HtmlDocument();
+                doc.LoadHtml(htmlContent);
+
+                // Sử dụng XPath để chọn phần tử h1 có class là 'title-detail'
+                HtmlNode detailNode = doc.DocumentNode.SelectSingleNode("//h1[contains(@class, 'title-detail')]");
+
+                // Lấy nội dung của phần tử h1 (innerText)
+                string detail = detailNode?.InnerText;
+
+                // Gán nội dung đã lấy vào thuộc tính Link của đối tượng HistoryNews
+                item.Link = detail;
+            }
+
+            return View(list);
         }
 
         public ActionResult ChangeInfo()
@@ -44,7 +78,8 @@ namespace NewsWeb.Controllers
             String birthdate = form["birthdate"];
             if (loggedInUser != null)
             {
-                Users userToUpdate = db.Users.Find(loggedInUser.id);
+                Users userToUpdate = db.Users.FirstOrDefault(c => c.id == loggedInUser.id);
+
                 if (userToUpdate != null)
                 {
                     userToUpdate.name = name;
@@ -83,6 +118,7 @@ namespace NewsWeb.Controllers
             }
             return RedirectToAction("News", "News");
         }
+        
 
         public ActionResult ConfirmChangePasswordFG(FormCollection form)
         {
@@ -126,7 +162,9 @@ namespace NewsWeb.Controllers
             }
             return View("ChangePassword");
         }
+      
 
     }
+   
 
 }

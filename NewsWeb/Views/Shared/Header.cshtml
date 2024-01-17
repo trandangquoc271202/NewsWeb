@@ -116,14 +116,14 @@
         padding: 10px;
     }
 
-    .item-search a {
-        text-decoration: none;
-        color: #333;
-    }
+        .item-search a {
+            text-decoration: none;
+            color: #333;
+        }
 
-    .item-search a:hover {
-        color: #007bff;
-    }
+            .item-search a:hover {
+                color: #007bff;
+            }
 
     #voice-search-btn {
         border: none;
@@ -131,11 +131,9 @@
         margin-top: -28px;
     }
 
-    #voice-search-btn:hover {
-        background-color: #58686b; /* Màu nền khi hover qua nút */
-    }
-
-
+        #voice-search-btn:hover {
+            background-color: #58686b; /* Màu nền khi hover qua nút */
+        }
 </style>
 <!-- Thêm thư viện jQuery và jQuery UI -->
 <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
@@ -191,7 +189,7 @@ function startSpeechRecognition() {
         // Sự kiện được kích hoạt khi kết quả nhận dạng giọng nói sẵn sàng
         recognition.onresult = function (event) {
             var result = event.results[0][0].transcript;
-            
+
             // Hiển thị kết quả lên thanh tìm kiếm
             $("#searchinput").val(result);
 
@@ -225,7 +223,7 @@ function startSpeechRecognition() {
             <ul>
                 <li><a href="/Home/Index">Trang chủ</a></li>
                 <li class="dropdown">
-                    <a ><span>Danh mục</span> <i class="bi bi-chevron-down dropdown-indicator"></i></a>
+                    <a><span>Danh mục</span> <i class="bi bi-chevron-down dropdown-indicator"></i></a>
                     <ul>
                         <li><a href="/Category/World">Thế giới</a></li>
                         <li><a href="/Category/News">Thời sự</a></li>
@@ -253,7 +251,12 @@ function startSpeechRecognition() {
                 <ul class="menu_user">
                     <li><a href="~/InfoUser/InfoUser">Thông tin người dùng</a></li>
                     <li><a href="~/InfoUser/ChangePassword">Thay đổi mật khẩu</a></li>
+                    <li><a href="~/InfoUser/History">Lịch sử</a></li>
                     <li><a href="~/Login/Logout">Đăng xuất</a></li>
+                    @if (loggedInUser.permission == "admin")
+                    {
+                        <li><a href="/Admin/AccoutManage/Account">Quản lý</a></li>
+                    }
                 </ul>
             </div>
         }

@@ -15,7 +15,7 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>NewsWeb</RootNamespace>
     <AssemblyName>NewsWeb</AssemblyName>
-    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
     <MvcBuildViews>false</MvcBuildViews>
     <UseIISExpress>true</UseIISExpress>
     <Use64BitIISExpress />
@@ -136,6 +136,9 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Areas\Admin\AdminAreaRegistration.cs" />
+    <Compile Include="Areas\Admin\Controllers\AccoutManageController.cs" />
+    <Compile Include="Areas\Admin\Controllers\CommentManageController.cs" />
     <Compile Include="Controllers\CategoryController.cs" />
     <Compile Include="Controllers\ContactController.cs" />
     <Compile Include="Controllers\DetailController.cs" />
@@ -148,12 +151,13 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\202401071535478_Dbinit.cs" />
-    <Compile Include="Migrations\202401071535478_Dbinit.designer.cs">
-      <DependentUpon>202401071535478_Dbinit.cs</DependentUpon>
+    <Compile Include="Migrations\202401160300100_DbInit.cs" />
+    <Compile Include="Migrations\202401160300100_DbInit.designer.cs">
+      <DependentUpon>202401160300100_DbInit.cs</DependentUpon>
     </Compile>
     <Compile Include="Models\Contacts.cs" />
     <Compile Include="Models\DetailComment.cs" />
+    <Compile Include="Models\HistoryNews.cs" />
     <Compile Include="Models\ItemSearch.cs" />
     <Compile Include="Models\MigrationsConfiguration.cs" />
     <Compile Include="Models\Model1.cs" />
@@ -617,6 +621,12 @@
     <Content Include="Content\assets1\assets\vendor\tinymce\composer.json" />
     <Content Include="Content\assets1\assets\vendor\tinymce\package.json" />
     <Content Include="Content\assets1\assets\vendor\tinymce\README.md" />
+    <Content Include="Areas\Admin\Views\web.config" />
+    <Content Include="Areas\Admin\Views\Shared\Header.cshtml" />
+    <Content Include="Areas\Admin\Views\AccoutManage\Account.cshtml" />
+    <Content Include="Areas\Admin\Views\AccoutManage\Detail.cshtml" />
+    <Content Include="Areas\Admin\Views\CommentManage\Comment.cshtml" />
+    <Content Include="Areas\Admin\Views\CommentManage\Detail.cshtml" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.3.1.js" />
     <Content Include="Scripts\jquery-3.3.1.min.js" />
@@ -662,9 +672,12 @@
     <Content Include="Views\Search\Search.cshtml" />
     <Content Include="Views\Contact\Contact.cshtml" />
     <Content Include="Views\Contact\ContactManager.cshtml" />
+    <Content Include="Views\Contact\Detail.cshtml" />
+    <Content Include="Views\InfoUser\History.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Areas\Admin\Data\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
@@ -778,8 +791,8 @@
     <Service Include="{4A0DDDB5-7A95-4FBF-97CC-616D07737A77}" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\202401071535478_Dbinit.resx">
-      <DependentUpon>202401071535478_Dbinit.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\202401160300100_DbInit.resx">
+      <DependentUpon>202401160300100_DbInit.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
