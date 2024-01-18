@@ -569,7 +569,7 @@
                 <tbody>
                         @foreach (var item in ViewBag.ContactList)
                         {
-                        <tr id="contact_@item.id">
+                        <tr id="contact_@item.id" class ="contact_item">
                             <td><a href="/Contact/Detail?id=@item.id" style="color:black">@item.id</a></td>
                             <td><a href="/Contact/Detail?id=@item.id" style="color:black">@item.name</a></td>
                             <td><a href="/Contact/Detail?id=@item.id" style="color:black">@item.email</a></td>
@@ -581,13 +581,11 @@
                 </tbody>
             </table></div>
             <div class="pagination" id="pagination">
-                @for (int i = 1; i < ViewBag.page; i++) {
-                        <button class="page-btn" onclick="loadContacts(@i)">@i</button>
+                @for (int i = 1; i <= ViewBag.pages; i++) {
+                    string buttonClass = i == ViewBag.page ? "page-btn active" : "page-btn";
+                    <button class="@buttonClass" onclick="loadContacts(@i)">@i</button>
                 }
-                <button class="page-btn active" onclick="loadContacts(@ViewBag.page)">@ViewBag.page</button>
-                @for (int i = ViewBag.page + 1; i <= ViewBag.pages; i++) {
-                     <button class="page-btn" onclick="loadContacts(@i)">@i</button>
-                }
+
             </div>
         </section>
 
@@ -639,7 +637,11 @@
                             // Thực hiện làm mới trang hoặc cập nhật giao diện người dùng khác
                             // Xóa phần tử HTML của liên hệ đã bị xóa
                             $("#contact_" + id).remove();
-                            loadContacts(parseInt($('.page-btn.active').text(), 10));
+                            if($(".contact_item").length == 0){
+                                loadContacts(parseInt($('.page-btn.active').text(), 10)-1);
+                            }else{
+                                loadContacts(parseInt($('.page-btn.active').text(), 10));
+                            }
                         } else {
                             // Hiển thị thông báo lỗi
                             alert(result.message);
@@ -682,11 +684,11 @@
                                 console.log(extra);
                                 for (var i = 1; i <= extra; i++) {
                                     var rowHtml = '<tr>' +
-                                            '<td style="color:white; border-bottom: none;">1</td>' +
-                                            '<td style="color:white; border-bottom: none;"></td>' +
-                                            '<td style="color:white; border-bottom: none;"></td>' +
-                                            '<td style="color:white; border-bottom: none;"></td>' +
-                                            '<td style="color:white; border-bottom: none;"></td>' +
+                                            '<td style="color:#f6f9ff; border-bottom-color: #f6f9ff;">1</td>' +
+                                            '<td style="color:#f6f9ff; border-bottom-color: #f6f9ff;"></td>' +
+                                            '<td style="color:#f6f9ff; border-bottom-color: #f6f9ff;"></td>' +
+                                            '<td style="color:#f6f9ff; border-bottom-color: #f6f9ff;"></td>' +
+                                            '<td style="color:#f6f9ff; border-bottom-color: #f6f9ff;"></td>' +
                                             '</tr>';
                                     contactList.find('table').append(rowHtml);
                                 }
@@ -696,10 +698,12 @@
                             pagination.find('.page-btn').remove(); // Xóa tất cả các nút phân trang cũ
 
                             // Thêm nút phân trang mới
-                            for (var i = 1; i <= result.total; i++) {
+                            if(result.page != 0){
+                                for (var i = 1; i <= result.total; i++) {
                                 var btnClass = (i === result.current) ? 'page-btn active' : 'page-btn';
                                 var button = '<button class="' + btnClass + '" onclick="loadContacts(' + i + ')">' + i + '</button>';
                                 pagination.append(button);
+                                }
                             }
                         },
                         error: function (error) {

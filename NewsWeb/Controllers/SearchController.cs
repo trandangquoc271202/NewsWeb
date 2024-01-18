@@ -19,7 +19,6 @@ namespace NewsWeb.Controllers
             string[] rss =
             {
                 "https://vnexpress.net/rss/the-gioi.rss",
-                "https://vnexpress.net/rss/tin-moi-nhat.rss",
                 "https://vnexpress.net/rss/thoi-su.rss",
                 "https://vnexpress.net/rss/kinh-doanh.rss",
                 "https://vnexpress.net/rss/giai-tri.rss",
@@ -61,7 +60,6 @@ namespace NewsWeb.Controllers
                 string[] rss =
                 {
             "https://vnexpress.net/rss/the-gioi.rss",
-            "https://vnexpress.net/rss/tin-moi-nhat.rss",
             "https://vnexpress.net/rss/thoi-su.rss",
             "https://vnexpress.net/rss/kinh-doanh.rss",
             "https://vnexpress.net/rss/giai-tri.rss",
