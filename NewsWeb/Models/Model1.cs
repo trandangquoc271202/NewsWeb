@@ -15,6 +15,7 @@ namespace NewsWeb.Models
         public DbSet<Users> Users { get; set; }
         public DbSet<Comment> Comments { get; set; }
         public DbSet<Contacts> Contacts { get; set; }
-        public DbSet<HistoryNews> HistoryNews { get; set; } 
+        public DbSet<HistoryNews> HistoryNews { get; set; }
+        public DbSet<Favorite> Favorite { get; set; }
     }
 }

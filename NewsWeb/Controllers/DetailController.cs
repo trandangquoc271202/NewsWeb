@@ -3,8 +3,10 @@ using NewsWeb.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using System.Web;
 using System.Web.Mvc;
+using WebGrease.Css.Ast;
 
 namespace NewsWeb.Controllers
 {
@@ -12,6 +14,7 @@ namespace NewsWeb.Controllers
     {
         Model1 db = new Model1();
         // GET: Detail
+
         public ActionResult Detail()
         {
            
@@ -22,6 +25,8 @@ namespace NewsWeb.Controllers
             HtmlDocument doc = web.Load(url);
 
             HtmlNode sidebarNode = doc.DocumentNode.SelectSingleNode("//div[@class='sidebar-1']");
+            HtmlNode imageNode = doc.DocumentNode.SelectSingleNode("//div[contains(@class, 'fig-picture')]/img");
+            string imageUrl = imageNode?.GetAttributeValue("src", "");
 
             if (sidebarNode != null)
             {
@@ -35,8 +40,10 @@ namespace NewsWeb.Controllers
                     UserID = loggedInUser.id,
                     Link = url,
                     Time = DateTime.Now,
-                  
-                };
+                   
+                  ImagePath =imageUrl
+
+            };
                 db.HistoryNews.Add(his);
                 db.SaveChanges();
             }
@@ -61,6 +68,7 @@ namespace NewsWeb.Controllers
             ViewBag.ContentText = getContentText(content);
             return View();
         }
+    
 
         public string getContentText(string content)
         {
@@ -123,6 +131,113 @@ namespace NewsWeb.Controllers
             }
             return View();
         }
+        public ActionResult History()
+        {
+            Users loggedInUser = Session["LoggedInUser"] as Users;
+            List<HistoryNews> list = db.HistoryNews
+                .Where(item => item.UserID == loggedInUser.id)
+                .OrderBy(item => item.Time)
+                .ToList();
+
+            List<HistoryInfomation> result = new List<HistoryInfomation>(); // Corrected list initialization
+
+            foreach (var item in list)
+            {
+                string htmlContent;
+                using (WebClient webClient = new WebClient())
+                {
+                    htmlContent = webClient.DownloadString(item.Link);
+                }
+
+                HtmlDocument doc = new HtmlDocument();
+                doc.LoadHtml(htmlContent);
+
+                HtmlNode detailNode = doc.DocumentNode.SelectSingleNode("//h1[contains(@class, 'title-detail')]");
+                string title = detailNode?.InnerText;
+
+                HtmlNode imageNode = doc.DocumentNode.SelectSingleNode("//div[contains(@class, 'fig-picture')]/img");
+                string imageUrl = imageNode?.GetAttributeValue("src", "");
+
+                HtmlNode descriptionNode = doc.DocumentNode.SelectSingleNode("//div[contains(@class, 'description')]");
+                string description = descriptionNode?.InnerText;
+
+                // Create a new HistoryInfomation object and add it to the result list
+                HistoryInfomation historyInfo = new HistoryInfomation
+                {
+                    title = title,
+                    image = imageUrl,
+                    description = description,
+                    Time = item.Time,
+                };
+
+                result.Add(historyInfo);
+            }
+
+            // Pass the result list to the view
+            return View(result);
+        }
+        public ActionResult Favorite(String id)
+        {
+            var loggedInUser = Session["LoggedInUser"] as NewsWeb.Models.Users;
+            if (loggedInUser != null)
+            {
+                Favorite favorite = new Favorite
+                {
+                    UserID = loggedInUser.id,
+                    Link = id,
+                    Time = DateTime.Now,
+                };
+                db.Favorite.Add(favorite);
+                db.SaveChanges();
+            }
+
+            return Redirect("/Detail/Detail");
+        }
+
+        public ActionResult ListFavorite()
+        {
+            Users loggedInUser = Session["LoggedInUser"] as Users;
+            List<Favorite> list = db.Favorite
+                .Where(item => item.UserID == loggedInUser.id)
+                .OrderBy(item => item.Time)
+                .ToList();
+
+            List<ListFavorite> result = new List<ListFavorite>(); // Use a ViewModel
+
+            foreach (var item in list)
+            {
+                string htmlContent;
+                using (WebClient webClient = new WebClient())
+                {
+                    htmlContent = webClient.DownloadString(item.Link);
+                }
+
+                HtmlDocument doc = new HtmlDocument();
+                doc.LoadHtml(htmlContent);
+
+                HtmlNode detailNode = doc.DocumentNode.SelectSingleNode("//h1[contains(@class, 'title-detail')]");
+                string title = detailNode?.InnerText;
+
+                HtmlNode imageNode = doc.DocumentNode.SelectSingleNode("//div[contains(@class, 'fig-picture')]/img");
+                string imageUrl = imageNode?.GetAttributeValue("src", "");
+
+                HtmlNode descriptionNode = doc.DocumentNode.SelectSingleNode("//div[contains(@class, 'description')]");
+                string description = descriptionNode?.InnerText;
+
+                ListFavorite listFavorite = new ListFavorite
+                {
+                    Title = title,
+                    Image = imageUrl,
+                    Description = description,
+                    Time = item.Time
+                };
+
+                result.Add(listFavorite);
+            }
+
+            return View(result);
+        }
+
 
         [HttpPost]
         public ActionResult RemoveComment(FormCollection form)

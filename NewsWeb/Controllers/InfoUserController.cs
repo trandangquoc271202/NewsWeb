@@ -27,11 +27,12 @@ namespace NewsWeb.Controllers
         public ActionResult History()
         {
             Users loggedInUser = Session["LoggedInUser"] as Users;
-            List<HistoryNews> list = db.HistoryNews
-            .Where(item => item.UserID == loggedInUser.id)
-            .OrderBy(item => item.Time)
-            .ToList();
-            list = list.OrderByDescending(item => item.Time).ToList();
+           List<HistoryNews> list = db.HistoryNews
+                .Where(item => item.UserID == loggedInUser.id)
+                .OrderBy(item => item.Time)
+                .ToList();
+
+            List<HistoryInfomation> result = new List<HistoryInfomation>(); // Corrected list initialization
 
             foreach (var item in list)
             {
@@ -44,18 +45,102 @@ namespace NewsWeb.Controllers
                 HtmlDocument doc = new HtmlDocument();
                 doc.LoadHtml(htmlContent);
 
-                // Sử dụng XPath để chọn phần tử h1 có class là 'title-detail'
                 HtmlNode detailNode = doc.DocumentNode.SelectSingleNode("//h1[contains(@class, 'title-detail')]");
+                string title = detailNode?.InnerText;
 
-                // Lấy nội dung của phần tử h1 (innerText)
-                string detail = detailNode?.InnerText;
+                HtmlNode imageNode = doc.DocumentNode.SelectSingleNode("//div[contains(@class, 'fig-picture')]//img[contains(@class, 'lazy') or contains(@class, 'lazied')]");
+                string imageUrl = imageNode?.GetAttributeValue("data-src", "");
+                HtmlNode descriptionNode = doc.DocumentNode.SelectSingleNode("//p[contains(@class, 'description')]");
+                string description = descriptionNode?.InnerText;
 
-                // Gán nội dung đã lấy vào thuộc tính Link của đối tượng HistoryNews
-                item.Link = detail;
+                // Create a new HistoryInfomation object and add it to the result list
+                HistoryInfomation historyInfo = new HistoryInfomation
+                {
+                    title = title,
+                    image = imageUrl,
+                    description = description,
+                    Time = item.Time
+                };
+
+                result.Add(historyInfo);
             }
 
-            return View(list);
+            // Pass the result list to the view
+            return View(result);
+        }        
+        public ActionResult Favorite(String id)
+        {
+            var loggedInUser = Session["LoggedInUser"] as NewsWeb.Models.Users;
+            if (loggedInUser != null)
+            {
+                Favorite favorite = new Favorite
+                {
+                    UserID = loggedInUser.id,
+                    Link = id,
+                    Time = DateTime.Now,
+                };
+                db.Favorite.Add(favorite);
+                db.SaveChanges();
+            }
+
+            return Redirect("/Detail/Detail");
         }
+
+
+        public ActionResult ListFavorite()
+        {
+            Users loggedInUser = Session["LoggedInUser"] as Users;
+            List<Favorite> list = db.Favorite
+                .Where(item => item.UserID == loggedInUser.id)
+                .OrderBy(item => item.Time)
+                .ToList();
+
+            List<ListFavorite> result = new List<ListFavorite>(); // Use a ViewModel
+
+            foreach (var item in list)
+            {
+                string htmlContent = "";
+                try
+                {
+                    using (WebClient webClient = new WebClient())
+                    {
+                        htmlContent = webClient.DownloadString(item.Link);
+                    }
+
+                    HtmlDocument doc = new HtmlDocument();
+                    doc.LoadHtml(htmlContent);
+
+                    HtmlNode detailNode = doc.DocumentNode.SelectSingleNode("//h1[contains(@class, 'title-detail')]");
+                    string title = detailNode?.InnerText;
+
+                    HtmlNode imageNode = doc.DocumentNode.SelectSingleNode("//div[contains(@class, 'fig-picture')]/img");
+                    string imageUrl = imageNode?.GetAttributeValue("src", "");
+
+                    HtmlNode descriptionNode = doc.DocumentNode.SelectSingleNode("//div[contains(@class, 'description')]");
+                    string description = descriptionNode?.InnerText;
+
+                    ListFavorite listFavorite = new ListFavorite
+                    {
+                        Title = title,
+                        Image = imageUrl,
+                        Description = description,
+                        Time = item.Time
+                    };
+
+                    result.Add(listFavorite);
+                }
+                catch (Exception ex)
+                {
+                    // Log or handle the exception
+                    Console.WriteLine($"Error downloading content for {item.Link}: {ex.Message}");
+                }
+            }
+
+            return View(result);
+        }
+
+
+
 
         public ActionResult ChangeInfo()
         {

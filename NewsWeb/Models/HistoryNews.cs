@@ -7,6 +7,7 @@ namespace NewsWeb.Models
         public int id { get; set; }
         public int UserID { get; set; }
         public String Link { get; set; }
+        public string ImagePath { get; set; }
         public DateTime Time { get; set; }
 
         // Khóa ngoại cho UserID

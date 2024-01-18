@@ -1,20 +1,19 @@
-﻿@model List<NewsWeb.Models.HistoryNews>
+﻿@model List<NewsWeb.Models.HistoryInfomation>
 @{
     Layout = null;
     var loggedInUser = Session["LoggedInUser"] as NewsWeb.Models.Users;
     String er = ViewBag.ErrorMessage;
-
 }
 
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    @Response.ContentType = "text/html; charset=utf-8"
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <!--=============== REMIXICONS ===============-->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/3.5.0/remixicon.css" crossorigin="">
-
 
     <!--=============== CSS ===============-->
     <link rel="stylesheet" href="~/Content/assets/login/css/styles.css">
@@ -36,28 +35,42 @@
     <!-- Template Main CSS Files -->
     <link href="/Content/assets/css/variables.css" rel="stylesheet">
     <link href="/Content/assets/css/main.css" rel="stylesheet">
-    <title>Login form - MiTi</title>
+    <title>History - MiTi</title>
 </head>
 <body>
     @Html.Partial("Header")
-    <h1>History</h1>
 
-    <table style="margin-top: 60px; margin-left: 10px">
-        <thead>
-            <tr>
-                <th style="background-color: #f2f2f2;; padding: 10px; text-align: left; word-wrap: break-word;">Title</th>
-                <th style="padding: 8px; border-bottom: 1px solid #ddd; word-wrap: break-word; ">Time</th>
-            </tr>
-        </thead>
-        <tbody>
-            @foreach (var item in Model)
-            {
+    <div class="container mt-5">
+        <h1 style="margin-top: 80px">History</h1>
+
+        <table class="table table-bordered mt-4">
+            <thead>
                 <tr>
-                    <td>@item.Link</td>
-                    <td>@item.Time</td>
+                    <th style="padding: 8px; border-bottom: 1px solid #ddd; word-wrap: break-word;">Image</th>
+                    <th style="background-color: #f2f2f2; padding: 10px; text-align: left; word-wrap: break-word;">Title</th>
+                    <th style="padding: 8px; border-bottom: 1px solid #ddd; word-wrap: break-word;">Description</th>
+                    <th style="padding: 8px; border-bottom: 1px solid #ddd; word-wrap: break-word;">Time</th>
                 </tr>
-            }
-        </tbody>
-    </table>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>
+                            <img src="@item.image" alt="Image" class="img-fluid" />
+                        </td>
+                        <td>@item.title</td>
+                        <td>@item.description</td>
+                        <td>@item.Time</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+
+    <!-- Vendor JS Files -->
+    <!-- ... (Include your existing script tags for vendor JS files) -->
+    <!-- Template Main JS File -->
+    <!-- ... (Include your existing script tags for the main JS file) -->
 </body>
 </html>

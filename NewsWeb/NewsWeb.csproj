@@ -151,14 +151,17 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\202401160300100_DbInit.cs" />
-    <Compile Include="Migrations\202401160300100_DbInit.designer.cs">
-      <DependentUpon>202401160300100_DbInit.cs</DependentUpon>
+    <Compile Include="Migrations\202401181001384_DbInit.cs" />
+    <Compile Include="Migrations\202401181001384_DbInit.designer.cs">
+      <DependentUpon>202401181001384_DbInit.cs</DependentUpon>
     </Compile>
     <Compile Include="Models\Contacts.cs" />
     <Compile Include="Models\DetailComment.cs" />
+    <Compile Include="Models\Favorite.cs" />
+    <Compile Include="Models\HistoryInfomation.cs" />
     <Compile Include="Models\HistoryNews.cs" />
     <Compile Include="Models\ItemSearch.cs" />
+    <Compile Include="Models\ListFavorite.cs" />
     <Compile Include="Models\MigrationsConfiguration.cs" />
     <Compile Include="Models\Model1.cs" />
     <Compile Include="Models\Comment.cs" />
@@ -674,10 +677,13 @@
     <Content Include="Views\Contact\ContactManager.cshtml" />
     <Content Include="Views\Contact\Detail.cshtml" />
     <Content Include="Views\InfoUser\History.cshtml" />
+    <Content Include="Views\InfoUser\ListFavorite.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Areas\Admin\Data\" />
+    <Folder Include="Views\FavoriteInfo\" />
+    <Folder Include="Views\Favorite\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
@@ -791,8 +797,8 @@
     <Service Include="{4A0DDDB5-7A95-4FBF-97CC-616D07737A77}" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\202401160300100_DbInit.resx">
-      <DependentUpon>202401160300100_DbInit.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\202401181001384_DbInit.resx">
+      <DependentUpon>202401181001384_DbInit.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

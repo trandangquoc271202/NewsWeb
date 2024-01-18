@@ -154,7 +154,7 @@
                         var slicedData = data.slice(0, 5);
                         response(slicedData);
 
-                         // Hiển thị danh sách kết quả dưới thanh tìm kiếm
+                        // Hiển thị danh sách kết quả dưới thanh tìm kiếm
                         $("#search-results").empty(); // Xóa nội dung trước đó
                         $.each(slicedData, function (index, item) {
                             var link = "<a href='/Detail/Detail?id=" + item.link + "'>" + item.title + "</a>";
@@ -168,45 +168,45 @@
     });
 
     $(document).ready(function () {
-    // Khi nút giọng nói được click
-    $("#voice-search-btn").on("click", function () {
-        startSpeechRecognition();
+        // Khi nút giọng nói được click
+        $("#voice-search-btn").on("click", function () {
+            startSpeechRecognition();
+        });
     });
-});
 
-function startSpeechRecognition() {
-    // Kiểm tra xem trình duyệt có hỗ trợ API nhận dạng giọng nói hay không
-    if ('webkitSpeechRecognition' in window) {
-        var recognition = new webkitSpeechRecognition();
+    function startSpeechRecognition() {
+        // Kiểm tra xem trình duyệt có hỗ trợ API nhận dạng giọng nói hay không
+        if ('webkitSpeechRecognition' in window) {
+            var recognition = new webkitSpeechRecognition();
 
-        // Thiết lập các tùy chọn nhận dạng giọng nói
-        recognition.continuous = false;
-        recognition.interimResults = false;
+            // Thiết lập các tùy chọn nhận dạng giọng nói
+            recognition.continuous = false;
+            recognition.interimResults = false;
 
-        // Bắt đầu nhận dạng giọng nói
-        recognition.start();
+            // Bắt đầu nhận dạng giọng nói
+            recognition.start();
 
-        // Sự kiện được kích hoạt khi kết quả nhận dạng giọng nói sẵn sàng
-        recognition.onresult = function (event) {
-            var result = event.results[0][0].transcript;
+            // Sự kiện được kích hoạt khi kết quả nhận dạng giọng nói sẵn sàng
+            recognition.onresult = function (event) {
+                var result = event.results[0][0].transcript;
 
-            // Hiển thị kết quả lên thanh tìm kiếm
-            $("#searchinput").val(result);
+                // Hiển thị kết quả lên thanh tìm kiếm
+                $("#searchinput").val(result);
 
-            // Kích hoạt nút submit của form
-            $("#search-form").submit();
-        };
+                // Kích hoạt nút submit của form
+                $("#search-form").submit();
+            };
 
-        // Sự kiện được kích hoạt khi kết thúc nhận dạng giọng nói
-        recognition.onend = function () {
-            // Dừng quá trình nhận dạng giọng nói
-            recognition.stop();
-        };
-    } else {
-        // Trình duyệt không hỗ trợ API nhận dạng giọng nói
-        alert("Trình duyệt của bạn không hỗ trợ nhận dạng giọng nói.");
+            // Sự kiện được kích hoạt khi kết thúc nhận dạng giọng nói
+            recognition.onend = function () {
+                // Dừng quá trình nhận dạng giọng nói
+                recognition.stop();
+            };
+        } else {
+            // Trình duyệt không hỗ trợ API nhận dạng giọng nói
+            alert("Trình duyệt của bạn không hỗ trợ nhận dạng giọng nói.");
+        }
     }
-}
 
 
 </script>
@@ -252,6 +252,7 @@ function startSpeechRecognition() {
                     <li><a href="~/InfoUser/InfoUser">Thông tin người dùng</a></li>
                     <li><a href="~/InfoUser/ChangePassword">Thay đổi mật khẩu</a></li>
                     <li><a href="~/InfoUser/History">Lịch sử</a></li>
+                    <li><a href="~/InfoUser/ListFavorite">Danh sách yêu thích </a></li>
                     <li><a href="~/Login/Logout">Đăng xuất</a></li>
                     @if (loggedInUser.permission == "admin")
                     {
@@ -292,3 +293,4 @@ function startSpeechRecognition() {
     </div>
 
 </header>
+code.jquery.com
