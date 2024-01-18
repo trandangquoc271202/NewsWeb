@@ -123,6 +123,47 @@ namespace NewsWeb.Controllers
             }
             return View();
         }
+        [HttpPost]
+        public ActionResult CommentAjax(string message, string url)
+        {
+            Users userLogin = Session["LoggedInUser"] as Users;
+
+            if (userLogin != null)
+            {
+                Comment commentNews = new Comment
+                {
+                    idUser = userLogin.id,
+                    link = url,
+                    message = message,
+                    dateTimeComment = DateTime.Now,
+                    allow = true
+                };
+
+                db.Comments.Add(commentNews);
+                db.SaveChanges();
+
+                var query = from comment in db.Comments
+                            join user in db.Users on comment.idUser equals user.id
+                            where comment.link == url && comment.allow == true
+                            orderby comment.dateTimeComment descending
+                            select new DetailComment
+                            {
+                                id = comment.id,
+                                nameUser = user.name,
+                                idUser = comment.idUser,
+                                message = comment.message
+                            };
+
+                // Thực hiện truy vấn và lấy kết quả
+                var result = query.ToList();
+
+                return Json(new { success = true, comments = result });
+            }
+            else
+            {
+                return Json(new { success = false, message = "User not logged in" });
+            }
+        }
 
         [HttpPost]
         public ActionResult RemoveComment(FormCollection form)
@@ -139,5 +180,7 @@ namespace NewsWeb.Controllers
 
             return Redirect("/Detail/Detail?id=" + url);
         }
+
+
     }
 }

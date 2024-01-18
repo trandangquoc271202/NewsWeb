@@ -102,7 +102,7 @@
                             <div class="row mb-3">
                                 @Html.LabelFor(model => model.message, new { @class = "col-sm-2 col-form-label" })
                                 <div class="col-sm-10">
-                                    @Html.TextBoxFor(model => model.message, new { @class = "form-control", @readonly = "readonly" })
+                                    @Html.TextAreaFor(model => model.message, new { @class = "form-control", @readonly = "readonly" })
                                 </div>
                                 @Html.ValidationMessageFor(model => model.message, "", new { @class = "text-danger" })
                             </div>
