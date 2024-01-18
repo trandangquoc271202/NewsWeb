@@ -31,10 +31,7 @@ namespace NewsWeb.Controllers
 
         public ActionResult ContactManager(string pagestring)
         {
-            var loggedInUser = Session["LoggedInUser"] as NewsWeb.Models.Users;
-            if (loggedInUser != null && loggedInUser.permission == "admin")
-            {
-                    int page = 0;
+            int page = 0;
             if (pagestring == null)
             {
                 page = 1;
@@ -44,7 +41,7 @@ namespace NewsWeb.Controllers
                 page = int.Parse(pagestring);
             }
 
-            int contain = 8;
+            int contain = 10;
             int pages = 0;
             // Thực hiện truy vấn để lấy tất cả dữ liệu từ bảng Contacts
             List<Contacts> contacts = new List<Contacts>();
@@ -53,6 +50,12 @@ namespace NewsWeb.Controllers
             {
                 contain = 0;
                 page = 0;
+            }
+            else if (contacts.Count < contain)
+            {
+                page = 1;
+                contain = contacts.Count;
+                pages = 1;
             }
             else if (contacts.Count % contain == 0)
             {
@@ -71,8 +74,6 @@ namespace NewsWeb.Controllers
             ViewBag.page = page;
 
             return View();
-            }
-            return Redirect("/Login/Login");
         }
 
         public ActionResult Contact()
@@ -139,7 +140,7 @@ namespace NewsWeb.Controllers
                 page = int.Parse(pagestring);
             }
 
-            int contain = 8;
+            int contain = 10;
             int pages = 0;
             // Lấy sản phẩm từ index = 3 đến index = 5
             int startIndex = (page - 1) * contain;

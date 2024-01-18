@@ -27,9 +27,11 @@ namespace NewsWeb.Controllers
 
             if (user != null)
             {
-
-               
-
+                if (user.status==false)
+                {
+                    ViewBag.ErrorMessage = "Tài khoản của bạn đã bị khóa vui lòng liên hệ admin để giải quyết.";
+                    return View();
+                }
                 Session["LoggedInUser"] = user;
                 if (user.permission.Trim() == "admin")
                 {

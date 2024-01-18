@@ -59,7 +59,7 @@
     @Html.Partial("Header")<!-- End Header -->
 
     <main id="main">
-        
+
         <section class="single-post-content">
             <div class="container">
 
@@ -88,18 +88,17 @@
                             <span class="bi-mailbox2"></span>
                         </a>
 
+
+
                         <!-- ======= Comments Form ======= -->
                         <div class="row justify-content-center mt-5">
-
                             <div class="col-lg-12">
                                 <h5 class="comment-title">Để lại bình luận</h5>
-                                <form action="/Detail/Comment" method="post">
+                                <form id="commentForm" action="/Detail/CommentAjax" method="post">
                                     <div class="row">
-
                                         <div class="col-12 mb-3">
-
                                             <textarea name="comment" class="form-control" id="comment-message" placeholder="Nhập bình luận" cols="30" rows="10"></textarea>
-                                            <input type="hidden" name="link" value="@link">
+                                            <input type="hidden" name="link" id="link" value="@link">
                                         </div>
                                         <div class="col-12">
                                             <input type="submit" class="btn btn-primary" value="Đăng bình luận">
@@ -109,14 +108,14 @@
                             </div>
                         </div><!-- End Comments Form -->
                         <!-- ======= Comments ======= -->
-                        <div class="comments">
-                            <h5 class="comment-title py-4">@ViewBag.ItemList.Count Bình luận</h5>
+                        <div class="comments" style="margin-top: 20px">
+                            
                             @foreach (var item in ViewBag.ItemList)
                             {
                                 <div class="comment d-flex mb-4">
                                     <div class="flex-shrink-0">
                                         <div class="avatar avatar-sm rounded-circle">
-                                            <img class="avatar-img" src="assets/img/person-5.jpg" alt="" class="img-fluid">
+                                            <img class="avatar-img" src="https://bootdey.com/img/Content/avatar/avatar7.png" alt="" class="img-fluid">
                                         </div>
                                     </div>
                                     <div class="flex-grow-1 ms-2 ms-sm-3">
@@ -130,7 +129,7 @@
 
 
                                     </div>
-                                    @if (loggedInUser!=null && loggedInUser.id == item.idUser)
+                                    @if (loggedInUser != null && loggedInUser.id == item.idUser)
                                     {
                                         <form action="/Detail/RemoveComment" method="post">
                                             <input type="hidden" name="link" value="@link">
@@ -142,7 +141,81 @@
                                 </div>
                             }
                         </div><!-- End Comments -->
+                        <!-- ======= Comments ======= -->
+                        <div class="comments" style="margin-top: 20px" id="commentsContainer" style="">
+                            
+                            @foreach (var item in ViewBag.ItemList)
+                            {
+                                <div class="comment d-flex mb-4">
+                                   
+                                </div>
+                            }
+                        </div><!-- End Comments -->
 
+                        <script>
+                            $(document).ready(function () {
+                                // Bắt sự kiện khi form được submit
+                                $("#commentForm").submit(function (event) {
+                                    // Ngăn chặn hành động mặc định của form
+                                    event.preventDefault();
+
+                                    // Lấy dữ liệu từ form
+                                    var comment = $("#comment-message").val();
+                                    var url = $("#link").val();
+
+                                    // Gửi yêu cầu Ajax đến Action CommentAjax
+                                    $.ajax({
+                                        type: "POST",
+                                        url: "/Detail/CommentAjax",
+                                        data: { message: comment, url: url },
+                                        success: function (data) {
+                                            if (data.success) {
+                                                $(".comments").html(""); // Clear old content
+
+                                                // Iterate through the comments in the data and append them to the container
+                                                $.each(data.comments, function (index, item) {
+                                                    // Assuming item has properties like id, nameUser, message, etc.
+                                                    var commentHtml = `<div class="comment d-flex mb-4">
+                                                                            <div class="flex-shrink-0">
+                                                                                <div class="avatar avatar-sm rounded-circle">
+                                                                                   <img class="avatar-img" src="https://bootdey.com/img/Content/avatar/avatar7.png" alt="">
+                                                                                             </div>
+                                                                                         </div>
+                                                                                         <div class="flex-grow-1 ms-2 ms-sm-3">
+                                                                                             <div class="comment-meta d-flex align-items-baseline">
+                                                                                                 <h6 class="me-2">${item.nameUser}</h6>
+                                                                                                 <span class="text-muted">2d</span>
+                                                                                             </div>
+                                                                                             <div class="comment-body">
+                                                                                                 ${item.message}
+                                                                                             </div>
+                                                                                         </div>
+                                                                                <form id="deleteForm" action="/Detail/RemoveComment" method="post">
+                                                                                <input type="hidden" name="link" id="urlDetail" value="@link">
+                                                                                <input type="hidden" name="id" id = "idComment" value="${item.id}">
+                                                                                <button type="submit"><span class="icon bi-x"></span></button>
+                                                                                    </form>
+                                                                                     </div>`;
+
+                                                    $("#commentsContainer").append(commentHtml);
+                                                    console.log(commentHtml);
+                                                });
+                                            } else {
+                                                // Xử lý khi có lỗi (ví dụ: người dùng không đăng nhập)
+                                                alert(data.message);
+                                            }
+                                        },
+                                        error: function (error) {
+                                            console.log(error);
+                                        }
+                                    });
+                                });
+
+                            });
+
+
+                        </script>
+                       
 
                         <script>
                             function populateVoiceList() {
@@ -371,6 +444,11 @@
 
 
     </script>
+    <!-- Thêm thư viện jQuery (nếu chưa có) -->
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+
+   
+
 
 </body>
 
