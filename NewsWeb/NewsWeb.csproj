@@ -15,7 +15,7 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>NewsWeb</RootNamespace>
     <AssemblyName>NewsWeb</AssemblyName>
-    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <MvcBuildViews>false</MvcBuildViews>
     <UseIISExpress>true</UseIISExpress>
     <Use64BitIISExpress />
@@ -151,9 +151,9 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\202401171357446_newdb.cs" />
-    <Compile Include="Migrations\202401171357446_newdb.designer.cs">
-      <DependentUpon>202401171357446_newdb.cs</DependentUpon>
+    <Compile Include="Migrations\202401180620384_DBInit.cs" />
+    <Compile Include="Migrations\202401180620384_DBInit.designer.cs">
+      <DependentUpon>202401180620384_DBInit.cs</DependentUpon>
     </Compile>
     <Compile Include="Models\Contacts.cs" />
     <Compile Include="Models\DetailComment.cs" />
@@ -659,7 +659,7 @@
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Category\Business.cshtml" />
     <Content Include="Views\Category\Education.cshtml" />
-    <Content Include="Views\Category\Entertaiment.cshtml" />
+    <Content Include="Views\Category\Entertainment.cshtml" />
     <Content Include="Views\Category\Health.cshtml" />
     <Content Include="Views\Category\Law.cshtml" />
     <Content Include="Views\Category\Life.cshtml" />
@@ -791,8 +791,8 @@
     <Service Include="{4A0DDDB5-7A95-4FBF-97CC-616D07737A77}" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\202401171357446_newdb.resx">
-      <DependentUpon>202401171357446_newdb.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\202401180620384_DBInit.resx">
+      <DependentUpon>202401180620384_DBInit.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
