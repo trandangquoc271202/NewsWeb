@@ -31,7 +31,10 @@ namespace NewsWeb.Controllers
 
         public ActionResult ContactManager(string pagestring)
         {
-            int page = 0;
+            var loggedInUser = Session["LoggedInUser"] as NewsWeb.Models.Users;
+            if (loggedInUser != null && loggedInUser.permission == "admin")
+            {
+                    int page = 0;
             if (pagestring == null)
             {
                 page = 1;
@@ -68,6 +71,8 @@ namespace NewsWeb.Controllers
             ViewBag.page = page;
 
             return View();
+            }
+            return Redirect("/Login/Login");
         }
 
         public ActionResult Contact()
