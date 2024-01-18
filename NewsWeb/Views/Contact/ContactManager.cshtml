@@ -43,33 +43,35 @@
     * License: https://bootstrapmade.com/license/
     ======================================================== -->
     <style>
-    /* CSS để tùy chỉnh biểu tượng xóa */
-    .delete-icon {
-        color: red; /* Màu của biểu tượng xóa */
-        cursor: pointer; /* Thay đổi con trỏ khi di chuột vào */
-    }
+        /* CSS để tùy chỉnh biểu tượng xóa */
+        .delete-icon {
+            color: red; /* Màu của biểu tượng xóa */
+            cursor: pointer; /* Thay đổi con trỏ khi di chuột vào */
+        }
 
-    .pagination {
-        display: inline-block;
-    }
+        .pagination {
+            display: inline-block;
+        }
 
-    .pagination button {
-      color: black;
-      float: left;
-      padding: 1px 11px;
-      text-decoration: none;
-      transition: background-color .3s;
-      border: 1px solid #ddd;
-      font-size: 22px;
-    }
+            .pagination button {
+                color: black;
+                float: left;
+                padding: 1px 11px;
+                text-decoration: none;
+                transition: background-color .3s;
+                border: 1px solid #ddd;
+                font-size: 22px;
+            }
 
-    .pagination button.active {
-      background-color: #4CAF50;
-      color: white;
-      border: 1px solid #4CAF50;
-    }
+                .pagination button.active {
+                    background-color: #4CAF50;
+                    color: white;
+                    border: 1px solid #4CAF50;
+                }
 
-    .pagination a:hover:not(.active) {background-color: #ddd;}
+            .pagination a:hover:not(.active) {
+                background-color: #ddd;
+            }
     </style>
 </head>
 
@@ -113,6 +115,21 @@
                                 <td><a href="/Contact/Detail?id=@item.id" style="color:black">@item.subject</a></td>
                                 <td><i class="fas fa-trash delete-icon" onclick="confirmDelete(@item.id)"></i></td>
                             </tr>
+                        }
+
+
+                        @if (ViewBag.ContactList.Count < 10)
+                        {
+                            for (var i = 0; i < 10 - ViewBag.ContactList.Count; i++)
+                            {
+                                <tr class="contact_item">
+                                    <td style="color:#f6f9ff; border-bottom-color: #f6f9ff;">1</td>
+                                    <td style="color:#f6f9ff; border-bottom-color: #f6f9ff;"></td>
+                                    <td style="color:#f6f9ff; border-bottom-color: #f6f9ff;"></td>
+                                    <td style="color:#f6f9ff; border-bottom-color: #f6f9ff;"></td>
+                                    <td style="color:#f6f9ff; border-bottom-color: #f6f9ff;"></td>
+                                </tr>
+                            }
                         }
 
                     </tbody>
@@ -219,7 +236,7 @@
                         });
                         if (result.current == result.total) {
                             console.log(true);
-                            var extra = 8 - result.list.length;
+                            var extra = 10 - result.list.length;
                             console.log(extra);
                             for (var i = 1; i <= extra; i++) {
                                 var rowHtml = '<tr>' +
@@ -237,7 +254,7 @@
                         pagination.find('.page-btn').remove(); // Xóa tất cả các nút phân trang cũ
 
                         // Thêm nút phân trang mới
-                        if (result.page != 0) {
+                        if (result.current != 0) {
                             for (var i = 1; i <= result.total; i++) {
                                 var btnClass = (i === result.current) ? 'page-btn active' : 'page-btn';
                                 var button = '<button class="' + btnClass + '" onclick="loadContacts(' + i + ')">' + i + '</button>';
